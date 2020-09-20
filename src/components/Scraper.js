@@ -25,7 +25,14 @@ const Scraper = () => {
     const scrapeLink = () => {
         axios.post(`http://127.0.0.1:5000/scrape/${jobSourceFocus}`, { link: link })
             .then(res => {
-                console.log("res.data", res.data)
+                setJobForm(() => ({
+                    title: "",
+                    company: "",
+                    location: "",
+                    link: "",
+                    description: "",
+                }))
+                setJobForm(() => res.data)
             })
             .catch(err => {
                 console.log(err)
@@ -68,16 +75,15 @@ const Scraper = () => {
             <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
                 <TextField
                     variant="outlined"
-                    // placeHolder="Paste Link"
                     color="primary" inputProps={{ color: "white" }}
                     style={{ width: "450px", borderRadius: "10px", color: "white" }}
                     value={link}
                     onChange={(e) => setLink(e.target.value)}
                     placeholder="Have a Link?"
                 />
-                <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Find Job!</Button>
+                <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Get Details!</Button>
             </div>
-            <JobForm jobForm={jobForm} setJobForm={setJobForm}/>
+            <JobForm jobForm={jobForm} setJobForm={setJobForm} />
         </div>
     );
 };
