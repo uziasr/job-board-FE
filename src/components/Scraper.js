@@ -11,8 +11,16 @@ const Scraper = () => {
 
     const [jobSources, setJobSources] = useState(["indeed", "ziprecruiter", "dice", "monster"])
     const [jobSourceFocus, setJobSourceFocus] = useState("")
-
     const [link, setLink] = useState('')
+
+    const [jobForm, setJobForm] = useState({
+        title: "",
+        company: "",
+        location: "",
+        link: "",
+        description: "",
+
+    })
 
     const scrapeLink = () => {
         axios.post(`http://127.0.0.1:5000/scrape/${jobSourceFocus}`, { link: link })
@@ -60,15 +68,16 @@ const Scraper = () => {
             <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
                 <TextField
                     variant="outlined"
-                    placeHolder="Paste Link"
+                    // placeHolder="Paste Link"
                     color="primary" inputProps={{ color: "white" }}
                     style={{ width: "450px", borderRadius: "10px", color: "white" }}
                     value={link}
                     onChange={(e) => setLink(e.target.value)}
+                    placeholder="Have a Link?"
                 />
-                <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Save Job!</Button>
+                <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Find Job!</Button>
             </div>
-            <JobForm />
+            <JobForm jobForm={jobForm} setJobForm={setJobForm}/>
         </div>
     );
 };
