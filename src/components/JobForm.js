@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 const JobForm = (props) => {
     
     const validFieldCheck = () =>{
-        return 
+        return props.jobForm.title !== "" && props.jobForm.company !== "" && props.jobForm.location !== "" && props.jobForm.link !== "" && props.jobForm.description !== ""
     }
 
     return (
@@ -25,7 +25,7 @@ const JobForm = (props) => {
                     rows={6} style={{ width: "100%", height: "60%", marginBottom:"15px" }} name="description" label="description" value={props.jobForm.description} onChange={(e) => props.setJobForm({ ...props.jobForm, [e.target.name]: e.target.value })} />
             </div>
             <div>
-                <Button variant="contained" color="primary" style={{width: "100%"}}>Submit</Button>
+                <Button variant="contained" disabled={!validFieldCheck()} color="primary" style={{width: "100%"}}>Submit</Button>
             </div>
         </div>
     );
