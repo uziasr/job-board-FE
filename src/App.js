@@ -12,7 +12,8 @@ function App() {
       <header className="App-header">
         {/* <Scraper /> */}
         {/* <JobBoard /> */}
-        <Login/>
+        {/* <Login/> */}
+        <Register/>
       </header>
     </div>
   );
