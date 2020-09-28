@@ -4,6 +4,7 @@ import Register from "./Register"
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 
+export const endpoint = "http://127.0.0.1:5000/user"
 
 const Auth = () => {
 
@@ -13,7 +14,7 @@ const Auth = () => {
         <>
             {isNewUser ? <Register /> : <Login />}
             <div style={{display:"flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "30%"}}>
-                <Typography variant="subtitle2" style={{color:"black"}}> {isNewUser ? "Already have an account?" : "Are you new? Register today!"}</Typography>
+                <Typography variant="subtitle2" style={{color:"black"}}>Already Have an Account?</Typography>
                 <Switch
                     onChange={() => setIsNewUser(!isNewUser)}
                     color="default"
