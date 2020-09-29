@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import axios from "axios"
 import Typography from '@material-ui/core/Typography';
+import { getJobs } from "../state/actions"
+import { useDispatch, useSelector } from "react-redux"
 
 
 const JobBoard = () => {
+
+    const dispatch = useDispatch()
+    const state = useSelector(state => state)
 
     const [jobs, setJobs] = useState({
         applied: [],
@@ -13,9 +17,14 @@ const JobBoard = () => {
 
     })
 
-    useEffect(() => {
+    
 
+    useEffect(() => {
+        dispatch(getJobs())
     }, [])
+
+
+    console.log(state.jobs)
 
     return (
         <div className="jobBoardRoot">
