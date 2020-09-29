@@ -5,12 +5,25 @@ import {
     POST_JOB_START,
     POST_JOB_SUCCESS,
     POST_JOB_FAIL,
+    SCRAPE_JOB_START,
+    SCRAPE_JOB_SUCCESS,
+    SCRAPE_JOB_FAIL,
 }
     from "./actions"
 
 const initialState = {
     job: {},
     jobs: [],
+    jobForm: {
+        title: "",
+        company: "",
+        location: "",
+        link: "",
+        description: "",
+        importance: 3,
+        status: "applied",
+        salary: 0
+    },
     error: null,
     loading: false
 }
@@ -45,7 +58,7 @@ export const jobsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: null
+                error: null,
             }
         }
         case POST_JOB_SUCCESS: {
@@ -55,6 +68,40 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case POST_JOB_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case SCRAPE_JOB_START: {
+            return {
+                ...state,
+                loading: true,
+                error: null,
+                jobForm: {
+                    title: "",
+                    company: "",
+                    location: "",
+                    link: "",
+                    description: "",
+                    importance: 3,
+                    status: "applied",
+                    salary: 0
+                }
+            }
+        }
+        case SCRAPE_JOB_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                jobForm: {
+                    ...state.jobForm,
+                    ...action.payload
+                }
+            }
+        }
+        case SCRAPE_JOB_FAIL: {
             return {
                 ...state,
                 loading: false,

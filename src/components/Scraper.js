@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import JobForm from "./JobForm"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Loading } from 'react-loading-dot'
 
 
@@ -14,8 +14,10 @@ const Scraper = () => {
     const [jobSources, setJobSources] = useState(["indeed", "ziprecruiter", "dice", "monster"])
     const [jobSourceFocus, setJobSourceFocus] = useState("")
     const [link, setLink] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const state = useSelector(state => state)
+    const dispatch = useDispatch()
 
     const [jobForm, setJobForm] = useState({
         title: "",
@@ -29,6 +31,7 @@ const Scraper = () => {
     })
 
     const scrapeLink = () => {
+        setLoading(()=>true)
         axios.post(`http://127.0.0.1:5000/scrape/${jobSourceFocus}`, { link: link })
             .then(res => {
                 setJobForm(() => ({
@@ -42,10 +45,13 @@ const Scraper = () => {
                     salary: 0
                 }))
                 setJobForm(() => { return { ...jobForm, ...res.data } })
+                setLoading(()=>false)
             })
             .catch(err => {
                 console.log(err)
+                setLoading(()=>false)
             })
+        
     }
 
     const styles = theme => ({
@@ -76,7 +82,7 @@ const Scraper = () => {
     return (
         <div>
             <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography>
-            {state.loading ? <Loading background={"white"}/> : null}
+            {loading ? <Loading background={"white"}/> : null}
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 {jobSources.map((job, index) => (
                     <Typography variant="h5" key={index} style={{ color: job === jobSourceFocus ? "green" : "black", marginBottom: "10px" }} >{job}</Typography>
