@@ -15,7 +15,7 @@ const initialState = {
     loading: false
 }
 
-const jobsReducer = (state = initialState, action) => {
+export const jobsReducer = (state = initialState, action) => {
     switch (action) {
         case GET_JOBS_START: {
             return {

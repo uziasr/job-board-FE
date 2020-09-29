@@ -19,7 +19,9 @@ const Scraper = () => {
         location: "",
         link: "",
         description: "",
-
+        importance: 3,
+        status: "applied",
+        salary: 0
     })
 
     const scrapeLink = () => {
@@ -31,8 +33,11 @@ const Scraper = () => {
                     location: "",
                     link: "",
                     description: "",
+                    importance: 3,
+                    status: "applied",
+                    salary: 0
                 }))
-                setJobForm(() => res.data)
+                setJobForm(() => { return {...jobForm,  ...res.data}})
             })
             .catch(err => {
                 console.log(err)
