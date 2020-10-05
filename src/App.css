@@ -39,7 +39,31 @@
 }
 
 .jobBoardRoot {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  width: 80%;
+  width: 80%; */
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.jobCardRootWrap {
+  margin: 4% auto;
+  width: 70%;
+  background: whitesmoke;
+  border-radius: 25px;
+  padding: 4%;
+  cursor: pointer;
+}
+
+/* .jobCardRootWrap:hover {
+  width:72%;
+} */
+
+.jobCardText {
+  color: black;
+
 }

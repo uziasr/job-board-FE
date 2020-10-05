@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { getJobs } from "../state/actions"
 import { useDispatch, useSelector } from "react-redux"
+import JobCard from "./JobCard"
+import TextField from '@material-ui/core/TextField';
 
 
 const JobBoard = () => {
@@ -17,7 +19,7 @@ const JobBoard = () => {
 
     })
 
-    
+
 
     useEffect(() => {
         dispatch(getJobs())
@@ -28,22 +30,9 @@ const JobBoard = () => {
 
     return (
         <div className="jobBoardRoot">
-            <Typography variant="h4" style={{ color: "black" }}>Applied</Typography>
-            {jobs.applied.map(job => (
-                <p>{job}</p>
-            ))}
-            <Typography variant="h4" style={{ color: "black" }}>Interviewing</Typography>
-            {jobs.interviewing.map(job => (
-                <p>{job}</p>
-            ))}
-            <Typography variant="h4" style={{ color: "black" }}>Denied</Typography>
-            {jobs.denied.map(job => (
-                <p>{job}</p>
-            ))}
-            <Typography variant="h4" style={{ color: "black" }}>Hired</Typography>
-            {jobs.hired.map(job => (
-                <p>{job}</p>
-            ))}
+            <TextField label="Job Title" style={{width: "30%"}}></TextField>
+            <JobCard jobs={state.jobs} />
+
         </div>
     );
 };
