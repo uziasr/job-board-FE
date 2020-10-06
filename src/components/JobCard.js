@@ -16,14 +16,14 @@ const JobCard = ({ jobs }) => {
         }
     }
 
-    console.log(showDetails)
+    // console.log(showDetails)
 
     return (
         <div>
             {jobs.map(job =>
                 <div className="jobCardRootWrap">
                     <Typography variant="h5" className="jobCardText">{job.title}</Typography>
-                    {showDetails[job.id] ? null : <div onClick={() => detailHandler(job.id)}>
+                    {showDetails[job.id] ? null : <div className="chevronWrapper" onClick={() => detailHandler(job.id)}>
                         <FontAwesomeIcon icon={faChevronDown} style={{ color: "black", fontSize: "24px" }} />
                     </div>}
                     {showDetails[job.id] ?
@@ -34,7 +34,7 @@ const JobCard = ({ jobs }) => {
                         </>
                         : null
                     }
-                    {showDetails[job.id] ? <div onClick={() => detailHandler(job.id)}>
+                    {showDetails[job.id] ? <div className="chevronWrapper" onClick={() => detailHandler(job.id)}>
                         <FontAwesomeIcon icon={faChevronUp} style={{ color: "black", fontSize: "24px" }} />
                     </div> : null}
 
