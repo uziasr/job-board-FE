@@ -12,6 +12,10 @@ export const SCRAPE_JOB_START = "SCRAPE_JOB_START"
 export const SCRAPE_JOB_SUCCESS = "SCRAPE_JOB_SUCCESS"
 export const SCRAPE_JOB_FAIL = "SCRAPE_JOB_FAIL"
 
+export const GET_JOB_START = "GET_JOB_START"
+export const GET_JOB_SUCCESS = "GET_JOB_SUCCESS"
+export const GET_JOB_FAIL = "GET_JOB_FAIL"
+
 export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START })
     authorizedAxios().get("/job/all")
@@ -20,6 +24,15 @@ export const getJobs = () => dispatch => {
             dispatch({ type: GET_JOBS_SUCCESS, payload: res.data })
         })
         .catch(err => dispatch({ type: GET_JOBS_FAIL, payload: err }))
+}
+
+export const getJobById = (id) => dispatch => {
+
+    dispatch({ type: GET_JOB_START })
+    authorizedAxios().get(`/job/${id}`)
+        .then(res => dispatch({ type: GET_JOB_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: GET_JOB_FAIL, payload: err }))
+
 }
 
 export const addJob = (job) => dispatch => {

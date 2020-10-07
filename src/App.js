@@ -4,6 +4,7 @@ import './App.css';
 import Scraper from './components/Scraper'
 import JobBoard from './components/JobBoard'
 import Auth from "./components/auth/Auth"
+import Job from "./components/Job"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route exact path={"/add-job"} component={Scraper}/>
           <Route exact path={"/"} component={JobBoard}/>
           <Route exact path={"/authorization"} component={Auth}/>
+          <Route path={"/job/"} component={Job}/>
         </Switch>
         {/* <Scraper /> */}
         {/* <JobBoard /> */}

@@ -33,6 +33,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -42,7 +43,7 @@
   /* display: flex;
   justify-content: space-between;
   width: 80%; */
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,14 +61,17 @@
   cursor: pointer;
 }
 
-/* .jobCardRootWrap:hover {
-  width:72%;
-} */
+.jobCardRootWrap:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05, 1.05);
+  transition-duration: .30s;
+}
 
 .jobCardText {
   color: black;
 
 }
+
 .chevronWrapper {
   padding-bottom: 0%;
 }
@@ -83,4 +87,3 @@
   align-content: center;
   align-items: center;
 }
-

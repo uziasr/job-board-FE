@@ -115,8 +115,8 @@ const JobBoard = () => {
                     </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
-                        <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "100%", margin: "1% auto", fontSize: "32px", padding: "3%" }}></TextField>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", margin: "1% auto" }}>
+                        <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "100%", fontSize: "32px", padding: "3%" }}></TextField>
                         <Button onClick={() => searchHandler()} style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
                     </div>
                     <JobCard jobs={filteredData} />

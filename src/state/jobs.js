@@ -8,11 +8,24 @@ import {
     SCRAPE_JOB_START,
     SCRAPE_JOB_SUCCESS,
     SCRAPE_JOB_FAIL,
+    GET_JOB_START,
+    GET_JOB_SUCCESS,
+    GET_JOB_FAIL,
 }
     from "./actions"
 
 const initialState = {
-    job: {},
+    job: {
+        title: "",
+        company: "",
+        location: "",
+        link: "",
+        description: "",
+        salary: "",
+        importance: "",
+        status: "",
+        date: "",
+    },
     jobs: [],
     jobForm: {
         title: "",
@@ -102,6 +115,27 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case SCRAPE_JOB_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case GET_JOB_START: {
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+        }
+        case GET_JOB_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                job: action.payload
+            }
+        }
+        case GET_JOB_FAIL: {
             return {
                 ...state,
                 loading: false,
