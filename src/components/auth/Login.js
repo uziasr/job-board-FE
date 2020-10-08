@@ -15,7 +15,6 @@ const Login = () => {
     const loginHandler = () => {
         axios.post(`${endpoint}/login`, user)
             .then(res => {
-                console.log(res)
                 localStorage.setItem("token", res.data.token)
             })
             .catch(err => console.log(err))

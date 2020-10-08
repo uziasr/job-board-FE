@@ -36,6 +36,21 @@ const JobForm = (props) => {
         dispatch(addJob(props.jobForm))
     }
 
+    const clearForm = () => {
+        props.setJobForm(() => (
+            {
+                title: "",
+                company: "",
+                location: "",
+                link: "",
+                description: "",
+                importance: 3,
+                status: "applied",
+                salary: 0
+            }
+        ))
+    }
+
     return (
         <div style={{ display: "flex", flexDirection: "column", width: "100%", margin: "10px 0" }}>
             <div style={{ display: "flex", justifyContent: "space-between", margin: "15px 0" }}>
@@ -61,8 +76,8 @@ const JobForm = (props) => {
                     </Select>
                 </FormControl>
                 <>
-                    <TextField value={props.jobForm.salary} disabled={!salary.exists} style={{ width: "76%" }} variant="outlined" name="salary" label="salary"  onChange={(e) => props.setJobForm({ ...props.jobForm, [e.target.name]: e.target.value })} />
-                    <CheckBox checked={salary.exists} color="primary" onChange={()=>setSalary({...salary, exists: !salary.exists})}></CheckBox>
+                    <TextField value={props.jobForm.salary} disabled={!salary.exists} style={{ width: "76%" }} variant="outlined" name="salary" label="salary" onChange={(e) => props.setJobForm({ ...props.jobForm, [e.target.name]: e.target.value })} />
+                    <CheckBox checked={salary.exists} color="primary" onChange={() => setSalary({ ...salary, exists: !salary.exists })}></CheckBox>
                 </>
 
             </div>
@@ -72,6 +87,7 @@ const JobForm = (props) => {
             </div>
             <div>
                 <Button variant="contained" onClick={() => addJobHandler()} disabled={!validFieldCheck()} color="primary" style={{ width: "100%" }}>Submit</Button>
+                <Button variant="contained" onClick={() => clearForm()} color="primary" style={{ width: "100%" }}>Clear Form</Button>
             </div>
         </div>
     );

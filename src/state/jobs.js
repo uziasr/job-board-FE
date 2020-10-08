@@ -44,7 +44,6 @@ const initialState = {
 export const jobsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_JOBS_START: {
-            console.log("ths")
             return {
                 ...state,
                 loading: true,
@@ -52,7 +51,6 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_JOBS_SUCCESS: {
-            console.log("this is action", action)
             return {
                 ...state,
                 loading: false,
@@ -60,7 +58,6 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_JOBS_FAIL: {
-            console.log("this is action 2", action)
             return {
                 ...state,
                 loading: false,

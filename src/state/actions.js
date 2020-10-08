@@ -20,7 +20,6 @@ export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START })
     authorizedAxios().get("/job/all")
         .then(res => {
-            console.log(res.data)
             dispatch({ type: GET_JOBS_SUCCESS, payload: res.data })
         })
         .catch(err => dispatch({ type: GET_JOBS_FAIL, payload: err }))

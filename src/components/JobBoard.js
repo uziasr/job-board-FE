@@ -63,9 +63,6 @@ const JobBoard = () => {
         setFilteredData(state.jobs)
     }, [state.jobs])
 
-    console.log("hello", filteredJobs)
-
-
     const statusFilterHandler = (status) => {
         setStatusFilter(() => {
             const newStatusFilter = { ...statusFilter, [status]: { ...statusFilter[status], status: !statusFilter[status].status } }
@@ -84,7 +81,8 @@ const JobBoard = () => {
 
     }
 
-    const searchHandler = () => {
+    const searchHandler = (e) => {
+        e.preventDefault()
         setFilteredData(() => filteredJobs.filter(job => {
             return (RegExp(new RegExp(query.toLowerCase())).test(job.title.toLowerCase()))
         })
@@ -93,36 +91,36 @@ const JobBoard = () => {
 
 
 
-        return (
-            <div className="jobBoardRoot">
-                <div className="jobStatusRootWrap">
-                    <div className="jobStatusWrap">
-                        <Typography style={{ color: "black" }}>Applied ({statusFilter.applied.data.length})</Typography>
-                        <CheckBox checked={statusFilter.applied.status} onChange={() => statusFilterHandler("applied")} color="primary" ></CheckBox>
-                    </div>
-                    <div className="jobStatusWrap">
-                        <Typography style={{ color: "black" }}>Interviewing ({statusFilter.interviewing.data.length})</Typography>
-                        <CheckBox checked={statusFilter.interviewing.status} onChange={() => statusFilterHandler("interviewing")} color="primary" ></CheckBox>
-
-                    </div>
-                    <div className="jobStatusWrap">
-                        <Typography style={{ color: "black" }}>Denied ({statusFilter.declined.data.length})</Typography>
-                        <CheckBox checked={statusFilter.declined.status} onChange={() => statusFilterHandler("declined")} color="primary" ></CheckBox>
-                    </div>
-                    <div className="jobStatusWrap">
-                        <Typography style={{ color: "black" }}>Offered ({statusFilter.offered.data.length})</Typography>
-                        <CheckBox checked={statusFilter.offered.status} onChange={() => statusFilterHandler("offered")} color="primary" ></CheckBox>
-                    </div>
+    return (
+        <div className="jobBoardRoot">
+            <div className="jobStatusRootWrap">
+                <div className="jobStatusWrap">
+                    <Typography style={{ color: "black" }}>Applied ({statusFilter.applied.data.length})</Typography>
+                    <CheckBox checked={statusFilter.applied.status} onChange={() => statusFilterHandler("applied")} color="primary" ></CheckBox>
                 </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", margin: "1% auto" }}>
-                        <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "100%", fontSize: "32px", padding: "3%" }}></TextField>
-                        <Button onClick={() => searchHandler()} style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
-                    </div>
-                    <JobCard jobs={filteredData} />
+                <div className="jobStatusWrap">
+                    <Typography style={{ color: "black" }}>Interviewing ({statusFilter.interviewing.data.length})</Typography>
+                    <CheckBox checked={statusFilter.interviewing.status} onChange={() => statusFilterHandler("interviewing")} color="primary" ></CheckBox>
+
+                </div>
+                <div className="jobStatusWrap">
+                    <Typography style={{ color: "black" }}>Denied ({statusFilter.declined.data.length})</Typography>
+                    <CheckBox checked={statusFilter.declined.status} onChange={() => statusFilterHandler("declined")} color="primary" ></CheckBox>
+                </div>
+                <div className="jobStatusWrap">
+                    <Typography style={{ color: "black" }}>Offered ({statusFilter.offered.data.length})</Typography>
+                    <CheckBox checked={statusFilter.offered.status} onChange={() => statusFilterHandler("offered")} color="primary" ></CheckBox>
                 </div>
             </div>
-        );
-    };
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
+                <form onSubmit={(e)=>searchHandler(e)} style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", margin: "1% auto" }}>
+                    <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "100%", fontSize: "32px", padding: "3%" }}></TextField>
+                    <Button type="submit" style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
+                </form>
+                <JobCard jobs={filteredData} />
+            </div>
+        </div>
+    );
+};
 
-    export default JobBoard;
+export default JobBoard;

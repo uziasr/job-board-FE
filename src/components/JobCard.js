@@ -10,8 +10,8 @@ const JobCard = ({ jobs }) => {
     
     return (
         <div>
-            {jobs.map(job =>
-                <div className="jobCardRootWrap">
+            {jobs.map((job, index) =>
+                <div key={index} className="jobCardRootWrap">
                     <Link style={{textDecoration: "none"}} to={{
                         pathname:`/job/${job.id}`,
                         state: {id: job.id}
