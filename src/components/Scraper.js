@@ -31,7 +31,7 @@ const Scraper = () => {
     })
 
     const scrapeLink = () => {
-        setLoading(()=>true)
+        setLoading(() => true)
         axios.post(`http://127.0.0.1:5000/scrape/${jobSourceFocus}`, { link: link })
             .then(res => {
                 setJobForm(() => ({
@@ -45,13 +45,12 @@ const Scraper = () => {
                     salary: 0
                 }))
                 setJobForm(() => { return { ...jobForm, ...res.data } })
-                setLoading(()=>false)
+                setLoading(() => false)
             })
             .catch(err => {
-                console.log(err)
-                setLoading(()=>false)
+                setLoading(() => false)
             })
-        
+
     }
 
     const styles = theme => ({
@@ -60,9 +59,6 @@ const Scraper = () => {
         }
     });
 
-    const changeSource = () => {
-
-    }
 
     const validLink = () => {
         const filteredInput = jobSources.filter(job => link.search(job) !== -1)
@@ -82,7 +78,7 @@ const Scraper = () => {
     return (
         <div>
             <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography>
-            {loading ? <Loading background={"white"}/> : null}
+            {loading ? <Loading background={"white"} /> : null}
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 {jobSources.map((job, index) => (
                     <Typography variant="h5" key={index} style={{ color: job === jobSourceFocus ? "green" : "black", marginBottom: "10px" }} >{job}</Typography>
