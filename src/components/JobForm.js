@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import CheckBox from '@material-ui/core/CheckBox'
 import { useDispatch, useSelector } from "react-redux"
 import { addJob } from "../state/actions"
+import JobPostStatus from './JobPostStatus'
 
 
 
@@ -27,6 +28,7 @@ const JobForm = (props) => {
         exists: false
     })
 
+    const [open, setOpen] = React.useState(true);
 
     const validFieldCheck = () => {
         return props.jobForm.title !== "" && props.jobForm.company !== "" && props.jobForm.location !== "" && props.jobForm.link !== "" && props.jobForm.description !== ""
@@ -34,6 +36,7 @@ const JobForm = (props) => {
 
     const addJobHandler = () => {
         dispatch(addJob(props.jobForm))
+        setOpen(true)
     }
 
     const clearForm = () => {
@@ -51,7 +54,11 @@ const JobForm = (props) => {
         ))
     }
 
-    return (
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const Form = () => (
         <div style={{ display: "flex", flexDirection: "column", width: "100%", margin: "10px 0" }}>
             <div style={{ display: "flex", justifyContent: "space-between", margin: "15px 0" }}>
                 <TextField style={{ width: "48%" }} variant="outlined" name="title" label="title" value={props.jobForm.title} onChange={(e) => props.setJobForm({ ...props.jobForm, [e.target.name]: e.target.value })} />
@@ -88,8 +95,15 @@ const JobForm = (props) => {
             <div>
                 <Button variant="contained" onClick={() => addJobHandler()} disabled={!validFieldCheck()} color="primary" style={{ width: "100%" }}>Submit</Button>
                 <Button variant="contained" onClick={() => clearForm()} color="primary" style={{ width: "100%" }}>Clear Form</Button>
+                <JobPostStatus open={open} handleClose={handleClose}/>
             </div>
         </div>
+    )
+
+    return (
+        <>
+            {jobState.jobPostLoading ? null : <Form />}
+        </>
     );
 };
 

@@ -37,8 +37,10 @@ const initialState = {
         status: "applied",
         salary: 0
     },
+    jobPostedSuccess: null,
     error: null,
-    loading: false
+    loading: false,
+    jobPostLoading: false
 }
 
 export const jobsReducer = (state = initialState, action) => {
@@ -67,21 +69,24 @@ export const jobsReducer = (state = initialState, action) => {
         case POST_JOB_START: {
             return {
                 ...state,
-                loading: false,
+                jobPostLoading: false,
                 error: null,
+                jobPostedSuccess: null,
             }
         }
         case POST_JOB_SUCCESS: {
             return {
                 ...state,
-                loading: false,
+                jobPostLoading: false,
+                jobPostedSuccess: true
             }
         }
         case POST_JOB_FAIL: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload
+                jobPostLoading: false,
+                error: action.payload,
+                jobPostedSuccess: false
             }
         }
         case SCRAPE_JOB_START: {
