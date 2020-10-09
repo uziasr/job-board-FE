@@ -40,7 +40,8 @@ const initialState = {
     jobPostedSuccess: null,
     error: null,
     loading: false,
-    jobPostLoading: false
+    jobPostLoading: false,
+    jobId: null,
 }
 
 export const jobsReducer = (state = initialState, action) => {
@@ -78,7 +79,8 @@ export const jobsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 jobPostLoading: false,
-                jobPostedSuccess: true
+                jobPostedSuccess: true,
+                jobId: action.payload.id
             }
         }
         case POST_JOB_FAIL: {

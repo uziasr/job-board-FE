@@ -9,6 +9,8 @@ import CheckBox from '@material-ui/core/CheckBox'
 import { useDispatch, useSelector } from "react-redux"
 import { addJob } from "../state/actions"
 import JobPostStatus from './JobPostStatus'
+import { Loading } from 'react-loading-dot'
+
 
 
 
@@ -28,7 +30,7 @@ const JobForm = (props) => {
         exists: false
     })
 
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
 
     const validFieldCheck = () => {
         return props.jobForm.title !== "" && props.jobForm.company !== "" && props.jobForm.location !== "" && props.jobForm.link !== "" && props.jobForm.description !== ""
@@ -52,6 +54,7 @@ const JobForm = (props) => {
                 salary: 0
             }
         ))
+        props.setLink("")
     }
 
     const handleClose = () => {
@@ -95,14 +98,14 @@ const JobForm = (props) => {
             <div>
                 <Button variant="contained" onClick={() => addJobHandler()} disabled={!validFieldCheck()} color="primary" style={{ width: "100%" }}>Submit</Button>
                 <Button variant="contained" onClick={() => clearForm()} color="primary" style={{ width: "100%" }}>Clear Form</Button>
-                <JobPostStatus open={open} handleClose={handleClose}/>
+                <JobPostStatus open={open} handleClose={handleClose} clearForm={clearForm}/>
             </div>
         </div>
     )
 
     return (
         <>
-            {jobState.jobPostLoading ? null : <Form />}
+            {jobState.jobPostLoading ? <Loading background={"#3f51b5"} /> : <Form />}
         </>
     );
 };

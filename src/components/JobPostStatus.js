@@ -7,10 +7,19 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 
 
-const JobPostStatus = ({ open, handleClose }) => {
+const JobPostStatus = ({ open, handleClose, clearForm }) => {
+
+    const postAnotherHandler = () => {
+        handleClose(false)
+        clearForm()
+    }
+
+    const { jobId, jobPostedSuccess, jobPostLoading } = useSelector(state => state)
 
     const Success = () => (
         <>
@@ -21,10 +30,17 @@ const JobPostStatus = ({ open, handleClose }) => {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary" autoFocus>
-                    Go To Job
-                </Button>
-                <Button onClick={handleClose} color="primary">
+                <Link style={{ textDecoration: "none" }}
+                    to={{
+                        pathname: `/job/${jobId}`,
+                        state: { id: jobId }
+                    }}
+                >
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        Go To Job
+                    </Button>
+                </Link>
+                <Button onClick={postAnotherHandler} color="primary">
                     Post Another
                 </Button>
             </DialogActions>
@@ -56,11 +72,9 @@ const JobPostStatus = ({ open, handleClose }) => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-
-                {true ? <Success /> : <Failure />}
+                {jobPostLoading ? <DialogTitle id="alert-dialog-title">{"Error"}</DialogTitle> : jobPostedSuccess ? <Success /> : jobPostedSuccess === false ? <Failure /> : null}
             </Dialog>
         </div>
-        // {/* {true ? <Success /> : <Failure />} */ }
     );
 };
 
