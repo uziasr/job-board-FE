@@ -78,6 +78,7 @@
 
 .jobStatusRootWrap {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 50%;
 }
@@ -86,4 +87,20 @@
   display: flex;
   align-content: center;
   align-items: center;
+}
+
+.filterIcon {
+  margin: 1% auto;
+  cursor: pointer;
+}
+
+/* .filterRootWrap {
+  display: flex;
+  width: 100%;
+} */
+.checkBoxWrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 400px;
 }
