@@ -54,7 +54,7 @@
 
 .jobCardRootWrap {
   margin: 4% auto;
-  width: 500px;
+  width: 600px;
   background: whitesmoke;
   border-radius: 25px;
   padding: 3%;
@@ -79,14 +79,20 @@
 .jobStatusRootWrap {
   display: flex;
   flex-direction: column;
+  align-content: center;
+  align-items: flex-end;
   justify-content: space-between;
   width: 50%;
 }
 
 .jobStatusWrap {
   display: flex;
+  justify-content: flex-end;
   align-content: center;
   align-items: center;
+  margin: 4% 2%;
+  width: 100%;
+  padding-right: 25%;
 }
 
 .filterIcon {
@@ -94,13 +100,21 @@
   cursor: pointer;
 }
 
-/* .filterRootWrap {
+.filterRootWrap {
   display: flex;
+
+}
+
+.jobBoardFilterRoot {
   width: 100%;
-} */
+  background: whitesmoke;
+  border-radius: 10px;
+}
+
 .checkBoxWrap {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  align-content: center;
   width: 100%;
-  height: 400px;
 }

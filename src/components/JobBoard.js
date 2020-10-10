@@ -61,23 +61,6 @@ const JobBoard = () => {
         setFilteredData(state.jobs)
     }, [state.jobs])
 
-    const statusFilterHandler = (status) => {
-        setStatusFilter(() => {
-            const newStatusFilter = { ...statusFilter, [status]: { ...statusFilter[status], status: !statusFilter[status].status } }
-            setFilteredJobs(() => {
-                let allJobs = []
-                Object.keys(newStatusFilter).forEach(i => {
-                    if (newStatusFilter[i].status) {
-                        allJobs = [...allJobs, ...newStatusFilter[i].data]
-                    }
-                })
-                return allJobs
-            })
-            return newStatusFilter
-        })
-
-
-    }
 
     const searchHandler = (e) => {
         e.preventDefault()
@@ -96,7 +79,7 @@ const JobBoard = () => {
                     <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "80%", fontSize: "32px", padding: "3%" }}></TextField>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
                         <Button type="submit" style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
-                        <Button className="filterIcon" onClick={()=>setOpenFilters(true)}>
+                        <Button className="filterIcon" onClick={()=>setOpenFilters(!openFilters)}>
                             <FontAwesomeIcon icon={faFilter} style={{ color: "#3f51b5", fontSize: "28px" }} />
                         </Button>
                     </div>
