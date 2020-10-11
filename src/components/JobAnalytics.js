@@ -25,10 +25,12 @@ const JobAnalytics = () => {
         }
     }, [stats])
 
-    console.log(appsByDate)
 
     return (
         Object.keys(stats).length ? <div>
+            <div className="averageWrap">
+                <Typography style={{color:"black"}} variant="h3">Average of {stats.average.avg} applications since {stats.average.date.split(" ")[0]}</Typography>
+            </div>
             <div style={{ width: "100%" }}>
                 <Typography variant="h4" style={{ color: "black" }}>Applications Over Time</Typography>
                 <VictoryChart
