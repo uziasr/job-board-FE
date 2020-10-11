@@ -17,9 +17,6 @@ const JobBoard = () => {
 
     const dispatch = useDispatch()
     const state = useSelector(state => state)
-    const [statusFilter, setStatusFilter] = useState({
-        applied: { status: true, data: [] }, interviewing: { status: true, data: [] }, declined: { status: true, data: [] }, offered: { status: true, data: [] }
-    })
     const [query, setQuery] = useState('')
     const [filteredJobs, setFilteredJobs] = useState([]) // filtered by status filter
     const [filteredData, setFilteredData] = useState([]) // filtered by status filtered and search bar
@@ -30,33 +27,6 @@ const JobBoard = () => {
         if (!state.jobs.length) {
             dispatch(getJobs())
         }
-        setStatusFilter(() => {
-            const filtered = { applied: { status: true, data: [] }, interviewing: { status: true, data: [] }, declined: { status: true, data: [] }, offered: { status: true, data: [] } }
-            state.jobs.forEach(job => {
-                switch (job.status) {
-                    case "applied": {
-                        filtered.applied.data.push(job)
-                        break
-                    }
-                    case "interviewing": {
-                        filtered.interviewing.data.push(job)
-                        break
-                    }
-                    case "declined": {
-                        filtered.declined.data.push(job)
-                        break
-                    }
-                    case "offered": {
-                        filtered.offered.data.push(job)
-                        break
-                    }
-                    default: {
-                        return statusFilter
-                    }
-                }
-            })
-            return filtered
-        })
         setFilteredJobs(state.jobs)
         setFilteredData(state.jobs)
     }, [state.jobs])
@@ -79,7 +49,7 @@ const JobBoard = () => {
                     <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "80%", fontSize: "32px", padding: "3%" }}></TextField>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
                         <Button type="submit" style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
-                        <Button className="filterIcon" onClick={()=>setOpenFilters(!openFilters)}>
+                        <Button className="filterIcon" onClick={() => setOpenFilters(!openFilters)}>
                             <FontAwesomeIcon icon={faFilter} style={{ color: "#3f51b5", fontSize: "28px" }} />
                         </Button>
                     </div>

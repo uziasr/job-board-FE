@@ -16,6 +16,10 @@ export const GET_JOB_START = "GET_JOB_START"
 export const GET_JOB_SUCCESS = "GET_JOB_SUCCESS"
 export const GET_JOB_FAIL = "GET_JOB_FAIL"
 
+export const SET_FILTERS_START = "SET_FILTERS_START"
+export const SET_FILTERS_SUCCESS = "SET_FILTERS_SUCCESS"
+export const SET_FILTERS_FAIL = "SET_FILTERS_FAIL"
+
 export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START })
     authorizedAxios().get("/job/all")
@@ -47,4 +51,11 @@ export const scrape = (url, link) => dispatch => {
     authorizedAxios().post(`/scrape/${url}`, link)
         .then(res => dispatch({ type: SCRAPE_JOB_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: SCRAPE_JOB_FAIL, payload: err }))
+}
+
+export const addFilters = (filters) => dispatch => {
+    dispatch({ type: SET_FILTERS_START })
+    authorizedAxios().post("/job/filter", filters)
+        .then(res => dispatch({ type: SET_FILTERS_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: SET_FILTERS_FAIL, payload: err }))
 }

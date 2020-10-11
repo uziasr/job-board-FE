@@ -11,6 +11,9 @@ import {
     GET_JOB_START,
     GET_JOB_SUCCESS,
     GET_JOB_FAIL,
+    SET_FILTERS_START,
+    SET_FILTERS_SUCCESS,
+    SET_FILTERS_FAIL,
 }
     from "./actions"
 
@@ -144,6 +147,26 @@ export const jobsReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.payload
+            }
+        }
+        case SET_FILTERS_START: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case SET_FILTERS_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                jobs: action.payload
+            }
+        }
+        case SET_FILTERS_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload   
             }
         }
         default: {

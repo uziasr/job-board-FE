@@ -22,24 +22,40 @@ const Job = (props) => {
     }, [])
 
     return (
-        <>
+        <div className="jobRoot">
             {state.loading ? <Typography variant="h1" style={{ color: "black" }}>loading</Typography>
                 :
                 <>
-                    <Typography variant="h3" style={{ color: "black" }}>{state.job.title}</Typography>
-                    <Typography variant="h4" style={{ color: "black" }}>{state.job.company}</Typography>
-                    <Typography variant="h4" style={{ color: "black" }}>{state.job.location}</Typography>
-                    <a href={state.job.link}>
-                        <Typography variant="h6" style={{ color: "black" }}>{state.job.link}</Typography>
+                    <a className="jobLink" href={state.job.link} >
+                        <Typography className="jobLinkText" variant="h3">{state.job.title}</Typography>
                     </a>
-                    <Typography variant="h6" style={{ color: "black" }}>{state.job.description}</Typography>
-                    <Typography variant="h6" style={{ color: "black" }}>{state.job.salary}</Typography>
-                    <Typography variant="h6" style={{ color: "black" }}>{importance[state.job.importance]}</Typography>
-                    <Typography variant="h6" style={{ color: "black" }}>{state.job.status}</Typography>
-                    <Typography variant="h6" style={{ color: "black" }}>{state.job.date}</Typography>
+                    <div className="jobLoCo">
+                        <Typography variant="h4" style={{ color: "black" }}>{state.job.company}</Typography>
+                        <Typography variant="h4" style={{ color: "black" }}>{state.job.location}</Typography>
+                    </div>
+                    {/* <a href={state.job.link}>
+                        <Typography variant="h6" style={{ color: "black" }}>{state.job.link}</Typography>
+                    </a> */}
+                    <Typography variant="h6" style={{ color: "black", textAlign: "left" }}>{state.job.description}</Typography>
+                    <div className="jobDetails">
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>Salary</Typography>
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>{state.job.salary}</Typography>
+                    </div>
+                    <div className="jobDetails">
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>Importance</Typography>
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>{importance[state.job.importance]}</Typography>
+                    </div>
+                    <div className="jobDetails">
+                    <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>Status</Typography>
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>{state.job.status}</Typography>
+                    </div>
+                    <div className="jobDetails">
+                    <Typography variant="h6" style={{ color: "black", textAlign:"left"}}>Date</Typography>
+                        <Typography variant="h6" style={{ color: "black", textAlign:"left" }}>{state.job.date.split(" ").splice(1,3).join(' ')}</Typography>
+                    </div>
                 </>
             }
-        </>
+        </div>
     )
 }
 

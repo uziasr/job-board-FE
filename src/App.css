@@ -118,3 +118,35 @@
   align-content: center;
   width: 100%;
 }
+.jobRoot {
+  width:60%;
+}
+
+.jobLink {
+  text-decoration: none; 
+  cursor: pointer;
+}
+
+.jobLinkText {
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.jobLinkText:hover {
+  color: #3f51b5;
+}
+.jobLoCo {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0;
+  width: 60%;
+}
+
+.jobDetails {
+  display: flex;
+  justify-content: space-between;
+  margin: 1% 0;
+  width: 35%;
+}
