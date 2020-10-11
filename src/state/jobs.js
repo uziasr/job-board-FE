@@ -14,6 +14,9 @@ import {
     SET_FILTERS_START,
     SET_FILTERS_SUCCESS,
     SET_FILTERS_FAIL,
+    GET_STATS_START,
+    GET_STATS_SUCCESS,
+    GET_STATS_FAIL,
 }
     from "./actions"
 
@@ -39,6 +42,8 @@ const initialState = {
         importance: 3,
         status: "applied",
         salary: 0
+    },
+    stats: {
     },
     jobPostedSuccess: null,
     error: null,
@@ -166,7 +171,27 @@ export const jobsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                error: action.payload   
+                error: action.payload
+            }
+        }
+        case GET_STATS_START: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case GET_STATS_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                stats: action.payload
+            }
+        }
+        case GET_STATS_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
             }
         }
         default: {

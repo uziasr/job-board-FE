@@ -20,6 +20,10 @@ export const SET_FILTERS_START = "SET_FILTERS_START"
 export const SET_FILTERS_SUCCESS = "SET_FILTERS_SUCCESS"
 export const SET_FILTERS_FAIL = "SET_FILTERS_FAIL"
 
+export const GET_STATS_START = "GET_STATS_START"
+export const GET_STATS_SUCCESS = "GET_STATS_SUCCESS"
+export const GET_STATS_FAIL = "GET_STATS_FAIL"
+
 export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START })
     authorizedAxios().get("/job/all")
@@ -58,4 +62,12 @@ export const addFilters = (filters) => dispatch => {
     authorizedAxios().post("/job/filter", filters)
         .then(res => dispatch({ type: SET_FILTERS_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: SET_FILTERS_FAIL, payload: err }))
+}
+
+export const getStats = () => dispatch => {
+    dispatch({ type: GET_STATS_START })
+    authorizedAxios().get("/job/stats")
+        .then(res => dispatch({ type: GET_STATS_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: GET_STATS_FAIL, payload: err }))
+
 }
