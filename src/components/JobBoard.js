@@ -35,7 +35,7 @@ const JobBoard = () => {
     const searchHandler = (e) => {
         e.preventDefault()
         setFilteredData(() => filteredJobs.filter(job => {
-            return (RegExp(new RegExp(query.toLowerCase())).test(job.title.toLowerCase()))
+            return RegExp(new RegExp(query.toLowerCase())).test(job.title.toLowerCase()) || RegExp(new RegExp(query.toLowerCase())).test(job.company.toLowerCase()) || RegExp(new RegExp(query.toLowerCase())).test(job.location.toLowerCase())
         })
         )
     }
@@ -46,7 +46,7 @@ const JobBoard = () => {
         <div className="jobBoardRoot">
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
                 <form onSubmit={(e) => searchHandler(e)} style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", margin: "1% auto" }}>
-                    <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title" style={{ width: "80%", fontSize: "32px", padding: "3%" }}></TextField>
+                    <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title, Company, or Location" style={{ width: "80%", fontSize: "32px", padding: "3%" }}></TextField>
                     <div style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
                         <Button type="submit" style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
                         <Button className="filterIcon" onClick={() => setOpenFilters(!openFilters)}>
