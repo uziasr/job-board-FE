@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 const Job = (props) => {
 
-    const url = props.location.state.id
+    const url = props.location.pathname.split("/")[2]
     const state = useSelector(state => state)
     const dispatch = useDispatch()
     const [importance, setImportance] = useState({

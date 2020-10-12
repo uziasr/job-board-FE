@@ -25,7 +25,7 @@ const Scraper = () => {
         location: "",
         link: "",
         description: "",
-        importance: 3,
+        importance: 4,
         status: "applied",
         salary: 0
     })
