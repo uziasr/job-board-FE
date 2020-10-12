@@ -11,6 +11,12 @@ import {
     GET_JOB_START,
     GET_JOB_SUCCESS,
     GET_JOB_FAIL,
+    SET_FILTERS_START,
+    SET_FILTERS_SUCCESS,
+    SET_FILTERS_FAIL,
+    GET_STATS_START,
+    GET_STATS_SUCCESS,
+    GET_STATS_FAIL,
 }
     from "./actions"
 
@@ -37,8 +43,13 @@ const initialState = {
         status: "applied",
         salary: 0
     },
+    stats: {
+    },
+    jobPostedSuccess: null,
     error: null,
-    loading: false
+    loading: false,
+    jobPostLoading: false,
+    jobId: null,
 }
 
 export const jobsReducer = (state = initialState, action) => {
@@ -67,21 +78,25 @@ export const jobsReducer = (state = initialState, action) => {
         case POST_JOB_START: {
             return {
                 ...state,
-                loading: false,
+                jobPostLoading: false,
                 error: null,
+                jobPostedSuccess: null,
             }
         }
         case POST_JOB_SUCCESS: {
             return {
                 ...state,
-                loading: false,
+                jobPostLoading: false,
+                jobPostedSuccess: true,
+                jobId: action.payload.id
             }
         }
         case POST_JOB_FAIL: {
             return {
                 ...state,
-                loading: false,
-                error: action.payload
+                jobPostLoading: false,
+                error: action.payload,
+                jobPostedSuccess: false
             }
         }
         case SCRAPE_JOB_START: {
@@ -133,6 +148,46 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_JOB_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case SET_FILTERS_START: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case SET_FILTERS_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                jobs: action.payload
+            }
+        }
+        case SET_FILTERS_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case GET_STATS_START: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case GET_STATS_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                stats: action.payload
+            }
+        }
+        case GET_STATS_FAIL: {
             return {
                 ...state,
                 loading: false,

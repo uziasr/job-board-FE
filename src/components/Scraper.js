@@ -25,7 +25,7 @@ const Scraper = () => {
         location: "",
         link: "",
         description: "",
-        importance: 3,
+        importance: 4,
         status: "applied",
         salary: 0
     })
@@ -95,7 +95,7 @@ const Scraper = () => {
                 />
                 <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Get Details!</Button>
             </div>
-            <JobForm jobForm={jobForm} setJobForm={setJobForm} />
+            <JobForm jobForm={jobForm} setJobForm={setJobForm} setLink={setLink} />
         </div>
     );
 };

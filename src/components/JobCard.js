@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
 
 
