@@ -118,13 +118,14 @@
   align-content: center;
   width: 100%;
 }
+
 .jobRoot {
   margin: 4% auto 4% auto;
-  width:60%;
+  width: 60%;
 }
 
 .jobLink {
-  text-decoration: none; 
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -138,6 +139,7 @@
 .jobLinkText:hover {
   color: #3f51b5;
 }
+
 .jobLoCo {
   display: flex;
   justify-content: space-between;
@@ -163,5 +165,24 @@
 
 .pieWrap {
   margin: 0 auto;
-  width: 60%;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+.pieColor {
+  margin: 15% auto;
+  width: 100%;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+.pieLabelText {
+  border-radius: 10px;
+  width: 98%;
+  padding: 2%;
+  /* font-weight: bold; */
+  background: #d4d6d8;
 }
