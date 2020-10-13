@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, Bar } from 'victory';
+import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar } from 'victory';
 import { useSelector, useDispatch } from "react-redux"
 import { getStats } from "../state/actions"
 // import * as V from 'victory';
@@ -12,6 +12,7 @@ const JobAnalytics = () => {
     const [appsByDate, setAppsByDate] = useState([])
     const [jobImportanceBar, setJobImportanceBar] = useState([])
     const [jobStatusBar, setJobStatusBar] = useState([])
+    const [jobLinkPie, setJobLinkPie] = useState([])
 
     const importanceHash = {
         1: "just applying",
@@ -28,6 +29,17 @@ const JobAnalytics = () => {
         "declined": 4,
         "rejected": 5
     }
+
+    var colorArray = ['#FF6633', '#FFB399', 'navy', '#FFFF99', '#00B3E6', 
+		  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+		  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A', 
+		  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+		  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC', 
+		  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+		  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680', 
+		  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+		  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3', 
+		  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
 
     useEffect(() => {
         if (Object.keys(stats).length == 0) {
@@ -55,6 +67,13 @@ const JobAnalytics = () => {
                 })
                 return masterArr
             })
+            setJobLinkPie(()=>{
+                const masterArr = []
+                Object.keys(stats.links).forEach((i, index)=>{
+                    masterArr.push({x:index+1, y: stats.links[i], label: i})
+                })
+                return masterArr
+            })
 
         }
     }, [stats])
@@ -69,7 +88,7 @@ const JobAnalytics = () => {
                 <Typography variant="h5" style={{ color: "black" }}>Applications Over Time</Typography>
                 <VictoryChart
                     width={1000}
-                    domainPadding={{ x: 40, y: 40 }}
+                    domainPadding={{ x: 60, y: 60 }}
                 >
                     <VictoryLine
                         strokeWidth={200}
@@ -89,8 +108,31 @@ const JobAnalytics = () => {
                             duration: 2000,
                             onLoad: { duration: 1000 }
                         }}
-                        // interpolation="natural"
+                        interpolation="natural"
                         data={appsByDate}
+                    />
+                    <VictoryLine
+                        strokeWidth={200}
+                        style={{
+                            label: {
+                                fontSize: 20
+                            },
+                            data: {
+                                stroke: "dodgerblue",
+                                strokeWidth: ({ data }) => data.length
+                            },
+                            parent: { border: "1px solid #ccc" }
+                        }}
+                        // labels={({ datum }) => datum.x.toString().split(" ").splice(1,3).join(' ')}
+                        theme={VictoryTheme.material}
+                        animate={{
+                            duration: 2000,
+                            onLoad: { duration: 1000 }
+                        }}
+                        interpolation="natural"
+                        data={appsByDate.map(i=>(
+                            {x: i.x, y: stats.average.avg}
+                        ))}
                     />
                 </VictoryChart>
             </div>
@@ -125,6 +167,14 @@ const JobAnalytics = () => {
                         />
                     </VictoryChart>
                 </div>
+            </div>
+            <div className="pieWrap">
+                <VictoryPie data={jobLinkPie}
+                    animate={{
+                        duration: 2000
+                    }}
+                    colorScale={colorArray}
+                />
             </div>
         </div> : null
     );
