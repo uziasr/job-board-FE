@@ -119,6 +119,7 @@
   width: 100%;
 }
 .jobRoot {
+  margin: 4% auto 4% auto;
   width:60%;
 }
 
@@ -153,4 +154,9 @@
 
 .averageWrap {
   margin-bottom: 4%;
+}
+
+.statusRadio {
+  margin: 1% 0 3% 0;
+  width: 100%;
 }

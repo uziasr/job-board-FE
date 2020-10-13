@@ -17,6 +17,9 @@ import {
     GET_STATS_START,
     GET_STATS_SUCCESS,
     GET_STATS_FAIL,
+    UPDATE_JOB_START,
+    UPDATE_JOB_SUCCESS,
+    UPDATE_JOB_FAIL,
 }
     from "./actions"
 
@@ -188,6 +191,26 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_STATS_FAIL: {
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+        }
+        case UPDATE_JOB_START: {
+            return {
+                ...state,
+                // loading: true
+            }
+        }
+        case UPDATE_JOB_SUCCESS: {
+            return {
+                ...state,
+                loading: false,
+                job: action.payload
+            }
+        }
+        case UPDATE_JOB_FAIL: {
             return {
                 ...state,
                 loading: false,
