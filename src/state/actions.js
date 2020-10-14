@@ -24,6 +24,10 @@ export const GET_STATS_START = "GET_STATS_START"
 export const GET_STATS_SUCCESS = "GET_STATS_SUCCESS"
 export const GET_STATS_FAIL = "GET_STATS_FAIL"
 
+export const UPDATE_JOB_START = "UPDATE_JOB_START"
+export const UPDATE_JOB_SUCCESS = "UPDATE_JOB_SUCCESS"
+export const UPDATE_JOB_FAIL = "UPDATE_JOB_FAIL"
+
 export const getJobs = () => dispatch => {
     dispatch({ type: GET_JOBS_START })
     authorizedAxios().get("/job/all")
@@ -70,4 +74,11 @@ export const getStats = () => dispatch => {
         .then(res => dispatch({ type: GET_STATS_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: GET_STATS_FAIL, payload: err }))
 
+}
+
+export const updateJob = (url, update) => dispatch => {
+    dispatch({ type: UPDATE_JOB_START, })
+    authorizedAxios().patch(`/job/${url}`, update)
+        .then(res => dispatch({ type: UPDATE_JOB_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: UPDATE_JOB_FAIL, payload: err }))
 }
