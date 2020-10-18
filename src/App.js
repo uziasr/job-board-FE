@@ -14,7 +14,7 @@ function App() {
         <Switch>
           <Route exact path={"/add-job"} component={Scraper}/>
           <Route exact path={"/"} component={JobBoard}/>
-          <Route exact path={"/authorization"} component={Auth}/>
+          <Route exact path={"/register"} component={Auth}/>
           <Route path={"/job/"} component={Job}/>
           <Route path={"/analytics"} component={JobAnalytics}/>
         </Switch>
