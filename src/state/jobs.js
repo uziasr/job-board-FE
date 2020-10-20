@@ -53,6 +53,11 @@ const initialState = {
     loading: false,
     jobPostLoading: false,
     jobId: null,
+    initialJobsLoad:false,
+    jobFilters:{
+        importance: {},
+        status: {}
+    }
 }
 
 export const jobsReducer = (state = initialState, action) => {
@@ -68,7 +73,8 @@ export const jobsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                jobs: action.payload
+                jobs: action.payload,
+                initialJobsLoad: true
             }
         }
         case GET_JOBS_FAIL: {
@@ -164,10 +170,12 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case SET_FILTERS_SUCCESS: {
+            console.log(action.payload.data)
             return {
                 ...state,
                 loading: false,
-                jobs: action.payload
+                jobs: action.payload.data,
+                jobFilters: action.payload.filters
             }
         }
         case SET_FILTERS_FAIL: {

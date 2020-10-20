@@ -21,7 +21,7 @@ const Register = (props) => {
     const history = useHistory()
 
     const registerHandler = () => {
-        axios.post(`${endpoint}/login`, { name: newUser.name, email: newUser.email, password: newUser.password1 })
+        axios.post(`${endpoint}/register`, { name: newUser.name, email: newUser.email, password: newUser.password1 })
             .then(res => {
                 localStorage.setItem("token", res.data.token)
                 history.push('/add-job')
