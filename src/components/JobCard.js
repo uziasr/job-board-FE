@@ -14,8 +14,8 @@ const JobCard = ({ jobs }) => {
             {jobs.map((job, index) =>
                 <div key={index} className="jobCardRootWrap">
                     <Link style={{ textDecoration: "none" }} to={{
-                        pathname: `/job/${job.id}`,
-                        state: { id: job.id }
+                        pathname: `/job/${job["_id"]}`,
+                        state: { id: job["_id"] }
                     }} >
                         <Typography variant="h5" className="jobCardText">{job.title}</Typography>
                         <Typography style={{ fontSize: "18px" }} className="jobCardText">{job.company}</Typography>

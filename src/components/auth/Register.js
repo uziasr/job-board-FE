@@ -27,7 +27,6 @@ const Register = (props) => {
                 history.push('/add-job')
             })
             .catch(err => {
-                console.log(err)
                 setError("There was an error in creating your account. Please try again later")
             })
     }

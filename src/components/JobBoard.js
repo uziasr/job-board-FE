@@ -31,8 +31,6 @@ const JobBoard = () => {
         setFilteredData(state.jobs)
     }, [state.jobs])
 
-    console.log("this is state.jobs", state.jobs)
-
     const searchHandler = (e) => {
         e.preventDefault()
         setFilteredData(() => filteredJobs.filter(job => {

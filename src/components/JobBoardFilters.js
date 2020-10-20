@@ -24,7 +24,6 @@ const JobBoardFilters = ({ setOpenFilters }) => {
         setFilter(state.jobFilters)
     }, [])
 
-    console.log(filter)
 
     const filterHandler = () => {
         dispatch(addFilters(filter))

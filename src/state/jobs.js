@@ -170,7 +170,6 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case SET_FILTERS_SUCCESS: {
-            console.log(action.payload.data)
             return {
                 ...state,
                 loading: false,

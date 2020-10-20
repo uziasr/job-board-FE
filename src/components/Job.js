@@ -50,7 +50,6 @@ const Job = (props) => {
                                     label="Applied"
                                     labelPlacement="bottom"
                                     style={{ color: "black" }}
-                                // onClick={e=>console.log(e)}
                                 />
                                 <FormControlLabel
                                     value="interviewing"
