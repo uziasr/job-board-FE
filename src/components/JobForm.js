@@ -5,7 +5,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import CheckBox from '@material-ui/core/CheckBox'
+import Checkbox from '@material-ui/core/Checkbox'
 import { useDispatch, useSelector } from "react-redux"
 import { addJob } from "../state/actions"
 import JobPostStatus from './JobPostStatus'
@@ -93,7 +93,7 @@ const JobForm = ({ jobForm, setJobForm, setLink }) => {
                     </FormControl>
                     <>
                         <TextField value={jobForm.salary} disabled={!salary.exists} style={{ width: "76%" }} variant="outlined" name="salary" label="salary" onChange={(e) => inputHandler(e)} />
-                        <CheckBox checked={salary.exists} color="primary" onChange={() => setSalary({ ...salary, exists: !salary.exists })}></CheckBox>
+                        <Checkbox checked={salary.exists} color="primary" onChange={() => setSalary({ ...salary, exists: !salary.exists })}></Checkbox>
                     </>
 
                 </div>
