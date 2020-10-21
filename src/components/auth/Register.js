@@ -33,7 +33,7 @@ const Register = (props) => {
 
 
     return (
-        <div style={{ width: "30%" }}>
+        <div style={{ width: "100%", }}>
             <Typography variant="h2" style={{ color: "black" }}>Register</Typography>
             {error ? <Typography variant="h6" style={{ color: "red", textAlign: "left", marginTop: "4%" }}>{error}</Typography> : null}
             <div style={{ display: "flex", flexDirection: "column", margin: "5% 0 5% 0" }}>

@@ -11,9 +11,9 @@ const Auth = () => {
     const [isNewUser, setIsNewUser] = useState(true)
 
     return (
-        <>
+        <div className="authRoot">
             {isNewUser ? <Register /> : <Login />}
-            <div style={{display:"flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "30%"}}>
+            <div style={{display:"flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", marginBottom: isNewUser ? "10%" : "15%"}}>
                 <Typography variant="subtitle2" style={{color:"black"}}>Already Have an Account?</Typography>
                 <Switch
                     onChange={() => setIsNewUser(!isNewUser)}
@@ -22,7 +22,7 @@ const Auth = () => {
                 />
             </div>
 
-        </>
+        </div>
     );
 };
 

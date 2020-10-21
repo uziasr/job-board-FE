@@ -25,7 +25,7 @@ const Login = () => {
     }
 
     return (
-        <div style={{ width: "30%" }}>
+        <div style={{ width: "100%" }}>
             <Typography variant="h2" style={{ color: "black" }}>Login</Typography>
             <div style={{ display: "flex", flexDirection: "column", margin: "5% 0 5% 0" }}>
                 <Typography variant="h5" style={{ color: "black", textAlign: "left" }}>Email</Typography>

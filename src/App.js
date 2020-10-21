@@ -7,11 +7,13 @@ import JobBoard from './components/JobBoard'
 import Auth from "./components/auth/Auth"
 import Job from "./components/Job"
 import JobAnalytics from "./components/JobAnalytics"
+import NavBar from "./components/NavBar"
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <NavBar />
         <Switch>
           <Route exact path={"/register"} component={Auth} />
           <PrivateRoute exact path={"/"} component={JobBoard} />
