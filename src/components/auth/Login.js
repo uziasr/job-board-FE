@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { endpoint } from "./Auth"
 import axios from "axios"
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
 
@@ -12,12 +13,15 @@ const Login = () => {
         password: ""
     })
 
+    const history = useHistory()
+
     const loginHandler = () => {
         axios.post(`${endpoint}/login`, user)
             .then(res => {
                 localStorage.setItem("token", res.data.token)
+                history.push('/add-job')
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err.response, Object.keys(err)))
     }
 
     return (
