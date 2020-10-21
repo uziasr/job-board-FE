@@ -64,7 +64,7 @@ export const scrape = (url, link) => dispatch => {
 export const addFilters = (filters) => dispatch => {
     dispatch({ type: SET_FILTERS_START })
     authorizedAxios().post("/job/filter", filters)
-        .then(res => dispatch({ type: SET_FILTERS_SUCCESS, payload: res.data }))
+        .then(res => dispatch({ type: SET_FILTERS_SUCCESS, payload: { data: res.data, filters: filters } }))
         .catch(err => dispatch({ type: SET_FILTERS_FAIL, payload: err }))
 }
 

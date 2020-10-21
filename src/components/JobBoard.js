@@ -24,13 +24,12 @@ const JobBoard = () => {
     const [openFilters, setOpenFilters] = useState(false)
 
     useEffect(() => {
-        if (!state.jobs.length) {
+        if (!state.initialJobsLoad) {
             dispatch(getJobs())
         }
         setFilteredJobs(state.jobs)
         setFilteredData(state.jobs)
     }, [state.jobs])
-
 
     const searchHandler = (e) => {
         e.preventDefault()
@@ -55,7 +54,8 @@ const JobBoard = () => {
                     </div>
                 </form>
                 {openFilters ? <JobBoardFilters setOpenFilters={setOpenFilters} /> : null}
-                <JobCard jobs={filteredData} />
+                {state.loading ? <Typography variant="h2" style={{ color: "black", marginTop: "5%" }}>Loading...</Typography>
+                    : state.jobs.length && state.initialJobsLoad ? <JobCard jobs={filteredData} /> : <Typography variant="h2" style={{ color: "black", marginTop: "5%" }}>There are no jobs</Typography>}
             </div>
         </div>
     );
