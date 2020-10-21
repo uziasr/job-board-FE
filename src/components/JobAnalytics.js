@@ -176,7 +176,7 @@ const JobAnalytics = () => {
                 <div className="pieWrap">
                     <div style={{ width: "20%" }}>
                         {Object.keys(stats.links).map((link, index) => (
-                            <div className="pieColor" style={{ display: "flex", alignItems: "center", alignContent: "center", justifyContent: "center", background: colorArray[index], }}>
+                            <div key={index} className="pieColor" style={{ display: "flex", alignItems: "center", alignContent: "center", justifyContent: "center", background: colorArray[index], }}>
                                 <Typography variant="h6" className="pieLabelText" style={{ color: "black", fontWeight: "600" }}>{`${link} (${stats.links[link]})`}</Typography>
                                 {/* <p className="pieColor" style={{ background: colorArray[index], color: colorArray[index] }}></p> */}
                             </div>

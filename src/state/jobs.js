@@ -191,10 +191,11 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_STATS_SUCCESS: {
+            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
-                stats: action.payload
+                stats: action.payload,
             }
         }
         case GET_STATS_FAIL: {

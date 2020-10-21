@@ -4,7 +4,7 @@ import Register from "./Register"
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 
-export const endpoint = "http://127.0.0.1:5000/user"
+export const endpoint = "https://job-board-pro.herokuapp.com/user"
 
 const Auth = () => {
 
