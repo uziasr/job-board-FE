@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import JobBoardFilters from "./JobBoardFilters"
-
+import { Loading } from 'react-loading-dot'
 
 
 
@@ -42,7 +42,7 @@ const JobBoard = () => {
 
     return (
         <div className="jobBoardRoot">
-            {state.loading ? <Typography variant="h2" style={{ color: "black", marginTop: "5%" }}>Loading...</Typography> :
+            {state.loading ? <Loading background={"#3f51b5"} /> :
                 <>
                     <Typography variant="h3" style={{ color: "black", margin: ".25% auto" }}>Follow up... get hired</Typography>
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
