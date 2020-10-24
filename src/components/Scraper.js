@@ -76,7 +76,7 @@ const Scraper = () => {
     }
 
     return (
-        <div style={{margin:"0", top: "12%", position:"fixed"}}>
+        <div style={{margin:"2% 0"}}>
             <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography>
             {loading ? <Loading background={"white"} /> : null}
             <div style={{ display: "flex", justifyContent: "space-between" }}>

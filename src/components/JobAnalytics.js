@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar, VictoryTooltip } from 'victory';
 import { useSelector, useDispatch } from "react-redux"
 import { getStats } from "../state/actions"
-// import * as V from 'victory';
 
 const JobAnalytics = () => {
 
@@ -86,6 +85,10 @@ const JobAnalytics = () => {
             </div>
             <div style={{ width: "100%" }}>
                 <Typography variant="h5" style={{ color: "black" }}>Applications Over Time</Typography>
+                <div style={{ display: "flex", width: "30%", justifyContent: "space-between", margin: "1% auto 0 auto" }}>
+                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "#3CB371", padding:"10px 15px", borderRadius: "10px" }}>Actual</Typography>
+                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "dodgerblue", padding:"10px 15px", borderRadius: "10px" }}>Average</Typography>
+                </div>
                 <VictoryChart
                     width={1000}
                     domainPadding={{ x: 60, y: 60 }}
@@ -110,7 +113,7 @@ const JobAnalytics = () => {
                         }}
                         interpolation="natural"
                         data={appsByDate}
-                        
+
                     />
                     <VictoryLine
                         strokeWidth={200}
@@ -152,7 +155,7 @@ const JobAnalytics = () => {
 
                                 />
                             }
-                            
+
                         />
                     </VictoryChart>
                 </div>

@@ -12,6 +12,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "d3": "^6.2.0",
+    "d3-array": "^2.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loading-dot": "^1.0.6",
