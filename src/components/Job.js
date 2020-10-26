@@ -24,10 +24,16 @@ const Job = (props) => {
     const updateStatus = (status) => {
         dispatch(updateJob(url, { status: status }))
     }
+    
+    const [jobDetails, setJobDetails] = useState({})
+    const [edit, setEdit] = useState(false)
 
     useEffect(() => {
         dispatch(getJobById(url))
+        setJobDetails(state.job)
     }, [])
+
+    console.log(jobDetails)
 
     return (
         <div className="jobRoot">
@@ -87,36 +93,43 @@ const Job = (props) => {
                     <div className="jobDescriptionDetails">
                         <div className="jobDetailsWrap">
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>COMPANY</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{state.job.company}</Typography>
+                                <Typography className="jobDetailTitle">COMPANY</Typography>
+                                <Typography variant="h6" className="jobDetailText">{state.job.company}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>LOCATION</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{state.job.location}</Typography>
+                                <Typography className="jobDetailTitle">LOCATION</Typography>
+                                <Typography variant="h6" className="jobDetailText">{state.job.location}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>SALARY</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{state.job.salary}</Typography>
+                                <Typography className="jobDetailTitle">SALARY</Typography>
+                                <Typography variant="h6" className="jobDetailText">{state.job.salary}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>IMPORTANCE</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{importance[state.job.importance]}</Typography>
+                                <Typography className="jobDetailTitle">IMPORTANCE</Typography>
+                                <Typography variant="h6" className="jobDetailText">{importance[state.job.importance]}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>STATUS</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{state.job.status}</Typography>
+                                <Typography className="jobDetailTitle">STATUS</Typography>
+                                <Typography variant="h6" className="jobDetailText">{state.job.status}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>DATE</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>{state.job.date.split(" ").splice(1, 3).join(' ')}</Typography>
+                                <Typography className="jobDetailTitle">DATE</Typography>
+                                <Typography variant="h6" className="jobDetailText">{state.job.date.split(" ").splice(1, 3).join(' ')}</Typography>
                             </div>
                             <div className="jobDetails">
-                                <Typography style={{ color: "black", textAlign: "center", borderBottom: "1px silver solid", letterSpacing: "1px", fontWeight: "bold", fontSize: "20px" }}>FOLLOWED UP</Typography>
-                                <Typography variant="h6" style={{ color: "black", textAlign: "left", marginTop: "2%" }}>No</Typography>
+                                <Typography className="jobDetailTitle">FOLLOWED UP</Typography>
+                                <Typography variant="h6" className="jobDetailText">No</Typography>
                             </div>
-                            <div className="jobDetailsButton">
-                                <Typography>EDIT</Typography>
-                            </div>
+                            {edit ? <div style={{ display: "flex", justifyContent: "center", margin: "0 auto", width: "90%" }}>
+                                <div className="jobEditButton" onClick={()=>setEdit(false)}>
+                                    <Typography>CANCEL</Typography>
+                                </div>
+                                <div className="jobEditButton">
+                                    <Typography>SUBMIT</Typography>
+                                </div>
+                            </div> : <div onClick={()=>setEdit(true)} className="jobDetailsButton">
+                                    <Typography>EDIT</Typography>
+                                </div>}
                         </div>
                         <div className="jobDescription">
                             <Typography style={{ color: "black", textAlign: "left" }}>{state.job.description}</Typography>
