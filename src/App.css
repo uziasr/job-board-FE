@@ -181,6 +181,10 @@
   width: 90%;
 }
 
+.jobInput {
+  margin-top: 2% !important;
+}
+
 .jobDescriptionDetails {
   display: flex;
   width: 100%;
