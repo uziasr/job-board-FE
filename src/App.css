@@ -41,21 +41,32 @@
 
 .jobBoardRoot {
   width: 100%;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   align-content: center;
-  margin-top: 1%;
+  /* margin-top: 1%; */
+  background: url("https://images.unsplash.com/photo-1547979854-5333256878de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc1MjQyfQ&auto=format&fit=crop&w=1950&q=80"); 
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
 }
 
 .jobBoardSearchAndCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  align-content: "center";
-  width: 500px;
+  align-content: center;
+  width: 600px;
+  background: #c1c1c1;
+  padding: 3%;
+  margin: 2% auto;
+  border-radius: 10px;
 }
+
+.scraperRoot {}
 
 .jobBoardSearch {
   display: flex;
@@ -80,8 +91,8 @@
 
 .jobCardRootWrap {
   margin: 4% auto;
-  width: 600px;
-  background: whitesmoke;
+  width: 500px;
+  background: white;
   border-radius: 25px;
   padding: 3%;
   cursor: pointer;
@@ -212,8 +223,8 @@
 }
 
 .jobDetailText {
-  color: black; 
-  text-align: left; 
+  color: black;
+  text-align: left;
   margin-top: 2% !important;
   font-size: 16px !important;
 }

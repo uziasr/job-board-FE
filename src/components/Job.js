@@ -26,21 +26,27 @@ const Job = (props) => {
     })
 
     const [status, setStatus] = useState(["applied", "interviewing", "reject", "declined", "hired"])
-
-    const updateStatus = (status) => {
-        dispatch(updateJob(url, { status: status }))
-    }
-
     const [jobDetails, setJobDetails] = useState({})
     const [edit, setEdit] = useState(false)
 
+
+    const updateStatus = () => {
+        dispatch(updateJob(url, jobDetails))
+        setEdit(false)
+    }
+
+    const editHandler = () => {
+        setJobDetails(()=>{
+          let jobObj =  {...state.job}
+          delete jobObj.date
+          return jobObj
+        })
+        setEdit(true)
+    }
+
     useEffect(() => {
-        if (state.job.company === "") {
-            dispatch(getJobById(url))
-        } else {
-            setJobDetails({ ...state.job })
-        }
-    }, [state.job])
+        dispatch(getJobById(url))
+    }, [])
 
     console.log(jobDetails)
 
@@ -193,10 +199,10 @@ const Job = (props) => {
                                 <div className="jobEditButton" onClick={() => setEdit(false)}>
                                     <Typography>CANCEL</Typography>
                                 </div>
-                                <div className="jobEditButton">
+                                <div onClick={() => updateStatus()} className="jobEditButton">
                                     <Typography>SUBMIT</Typography>
                                 </div>
-                            </div> : <div onClick={() => setEdit(true)} className="jobDetailsButton">
+                            </div> : <div onClick={() => editHandler()} className="jobDetailsButton">
                                     <Typography>EDIT</Typography>
                                 </div>}
                         </div>
