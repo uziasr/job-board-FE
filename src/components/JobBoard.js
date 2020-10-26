@@ -45,10 +45,10 @@ const JobBoard = () => {
             {state.loading ? <Loading background={"#3f51b5"} /> :
                 <>
                     <Typography variant="h3" style={{ color: "black", margin: ".25% auto" }}>Follow up... get hired</Typography>
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", width: "500px" }}>
-                        <form onSubmit={(e) => searchHandler(e)} style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center", width: "100%", margin: "1% auto" }}>
-                            <TextField value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title, Company, or Location" style={{ width: "80%", fontSize: "32px", padding: "3%" }}></TextField>
-                            <div style={{ display: "flex", justifyContent: "space-between", width: "50%" }}>
+                    <div className="jobBoardSearchAndCard">
+                        <form className="jobBoardSearch" onSubmit={(e) => searchHandler(e)}>
+                            <TextField className="jobSearchInput" value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title, Company, or Location"></TextField>
+                            <div className="jobBoardFilter">
                                 <Button type="submit" style={{ margin: "1% auto" }} variant="contained" color="primary">Search</Button>
                                 <Button className="filterIcon" onClick={() => setOpenFilters(!openFilters)}>
                                     <FontAwesomeIcon icon={faFilter} style={{ color: "#3f51b5", fontSize: "28px" }} />

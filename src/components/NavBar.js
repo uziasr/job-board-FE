@@ -29,24 +29,23 @@ export default function ButtonAppBar() {
         <div style={{ width: "100%" }} className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        {/* <MenuIcon /> */}
-                    </IconButton>
                     <Typography variant="h6" className={classes.title}>Job Board Pro</Typography>
-                    <Link to={"/"} style={{color:"white", textDecoration:"none"}}>
-                        <Button color="inherit">My Jobs</Button>
-                    </Link>
-                    <Link to={"/add-job"} style={{color:"white", textDecoration:"none"}}>
-                        <Button color="inherit">Add Job</Button>
-                    </Link>
-                    <Link to={"/analytics"} style={{color:"white", textDecoration:"none"}}>
-                        <Button color="inherit">Analytics</Button>
-                    </Link>
-                    <Link to={"/register"} style={{color:"white", textDecoration:"none"}}>
-                        <Button color="inherit">Login</Button>
-                    </Link>
+                    <div style={{ width: "40%", display: "flex", justifyContent: "space-between" }}>
+                        <Link to={"/"} style={{ color: "white", textDecoration: "none" }}>
+                            <Button color="inherit">My Jobs</Button>
+                        </Link>
+                        <Link to={"/add-job"} style={{ color: "white", textDecoration: "none" }}>
+                            <Button color="inherit">Add Job</Button>
+                        </Link>
+                        <Link to={"/analytics"} style={{ color: "white", textDecoration: "none" }}>
+                            <Button color="inherit">Analytics</Button>
+                        </Link>
+                        <Link to={"/register"} style={{ color: "white", textDecoration: "none" }}>
+                            <Button color="inherit">Login</Button>
+                        </Link>
+                    </div>
                 </Toolbar>
             </AppBar>
-        </div>
+        </div >
     );
 }

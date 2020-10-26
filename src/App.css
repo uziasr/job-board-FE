@@ -14,8 +14,8 @@
 }
 
 .App-header {
-  /* background-color: whitesmoke; */
-  background: #d4d6d8;
+  background-color: whitesmoke;
+  /* background: #d4d6d8; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,6 +47,35 @@
   align-items: center;
   align-content: center;
   margin-top: 1%;
+}
+
+.jobBoardSearchAndCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: "center";
+  width: 500px;
+}
+
+.jobBoardSearch {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1% auto;
+}
+
+.jobSearchInput {
+  width: 80%;
+  font-size: 32px;
+  padding: 3%;
+}
+
+.jobBoardFilter {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
 }
 
 .jobCardRootWrap {
@@ -118,7 +147,7 @@
 
 .jobRoot {
   margin: 1.5% auto 4% auto;
-  width: 60%;
+  width: 75%;
 }
 
 .jobLink {
@@ -146,9 +175,27 @@
 
 .jobDetails {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  margin: 1% 0;
-  width: 35%;
+  margin: 0 0 5% 0;
+  width: 90%;
+}
+
+.jobDescriptionDetails {
+  display: flex;
+  width: 100%;
+}
+
+.jobDetailsWrap {
+  width: 50%
+}
+
+.jobTitleWrap {
+  margin: 2% 0 4% 0;
+}
+
+.jobDescription {
+  width: 100%
 }
 
 .averageWrap {
@@ -191,9 +238,31 @@
   top: 15%; */
 }
 
+.jobDetailsButton {
+  background: #3f51b5;
+  width: 70%;
+  padding: 2%;
+  border-radius: 15px;
+  margin: 2% auto 0 auto;
+  cursor: pointer;
+}
+
+.jobDetailsButton:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  transform: scale(.95, .95);
+  transition-duration: .30s;
+}
+
 @media only screen and (max-width: 1100px) {
   .authRoot {
     width: 60%;
+  }
+  .jobRoot {
+    margin: 1.5% auto 4% auto;
+    width: 85%;
+  }
+  .jobDetails {
+    margin-bottom: 8%;
   }
 }
 
@@ -202,4 +271,3 @@
     width: 80%;
   }
 }
-

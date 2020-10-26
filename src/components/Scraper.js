@@ -77,7 +77,7 @@ const Scraper = () => {
 
     return (
         <div style={{margin:"2% 0"}}>
-            <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography>
+            {/* <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography> */}
             {loading ? <Loading background={"white"} /> : null}
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 {jobSources.map((job, index) => (
@@ -91,7 +91,7 @@ const Scraper = () => {
                     style={{ width: "450px", borderRadius: "10px", color: "white" }}
                     value={link}
                     onChange={(e) => setLink(e.target.value)}
-                    placeholder="Have a Link?"
+                    placeholder="Scrape Link"
                 />
                 <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Get Details!</Button>
             </div>
