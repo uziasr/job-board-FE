@@ -60,7 +60,7 @@
   align-items: center;
   align-content: center;
   width: 600px;
-  background: #c1c1c1;
+  background: #dcdcdc;
   padding: 3%;
   margin: 2% auto;
   border-radius: 10px;
@@ -144,7 +144,7 @@
 
 .jobBoardFilterRoot {
   width: 100%;
-  background: whitesmoke;
+  background: white;
   border-radius: 10px;
 }
 

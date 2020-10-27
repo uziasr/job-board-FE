@@ -12,6 +12,21 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Link } from "react-router-dom"
 import JobEdit from "./JobEdit"
+import Confetti from 'react-dom-confetti';
+
+const config = {
+    angle: 90,
+    spread: 360,
+    startVelocity: 40,
+    elementCount: 70,
+    dragFriction: 0.12,
+    duration: 3000,
+    stagger: 3,
+    width: "10px",
+    height: "10px",
+    perspective: "500px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
+};
 
 const Job = (props) => {
 
@@ -26,10 +41,12 @@ const Job = (props) => {
         5: "dream job"
     })
 
+
     const [status, setStatus] = useState(["applied", "interviewing", "reject", "declined", "hired"])
     const [jobDetails, setJobDetails] = useState({})
     const [edit, setEdit] = useState(false)
     const [followedUpPopUp, setFollowedUpPopUp] = useState(true)
+    const [celebrate, setCelebrate] = useState(false)
 
 
     const updateStatus = (jobDetails) => {
@@ -55,6 +72,11 @@ const Job = (props) => {
 
     return (
         <div className="jobRoot">
+            <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%"
+            }}><Confetti active={celebrate} config={config} /></div>
             {state.loading ? <Typography variant="h1" style={{ color: "black" }}>loading</Typography>
                 :
                 <>
@@ -204,6 +226,7 @@ const Job = (props) => {
                     </div>
                     {followedUpPopUp && state.job.followed_up === false ? <JobEdit setFollowedUpPopUp={setFollowedUpPopUp}
                         updateStatus={updateStatus}
+                        setCelebrate={setCelebrate}
                     /> : null}
                 </>
             }
