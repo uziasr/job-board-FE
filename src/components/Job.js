@@ -29,7 +29,7 @@ const Job = (props) => {
     const [status, setStatus] = useState(["applied", "interviewing", "reject", "declined", "hired"])
     const [jobDetails, setJobDetails] = useState({})
     const [edit, setEdit] = useState(false)
-    const [followedUpPopUp,setFollowedUpPopUp] = useState(true)
+    const [followedUpPopUp, setFollowedUpPopUp] = useState(true)
 
 
     const updateStatus = (jobDetails) => {
@@ -44,6 +44,7 @@ const Job = (props) => {
             return jobObj
         })
         setEdit(true)
+        setFollowedUpPopUp(false)
     }
 
     useEffect(() => {
@@ -64,6 +65,32 @@ const Job = (props) => {
                     </div>
                     <div className="jobDescriptionDetails">
                         <div className="jobDetailsWrap">
+                            {edit ?
+                                <>
+                                    <div className="jobDetails">
+                                        <Typography className="jobDetailTitle">TITLE</Typography>
+                                        <TextField
+                                            name="title"
+                                            variant="outlined"
+                                            color="primary"
+                                            value={jobDetails.title}
+                                            className="jobInput"
+                                            onChange={e => setJobDetails({ ...jobDetails, [e.target.name]: e.target.value })}
+                                        ></TextField>
+                                    </div>
+                                    <div className="jobDetails">
+                                        <Typography className="jobDetailTitle">LINK</Typography>
+                                        <TextField
+                                            name="link"
+                                            variant="outlined"
+                                            color="primary"
+                                            value={jobDetails.link}
+                                            className="jobInput"
+                                            onChange={e => setJobDetails({ ...jobDetails, [e.target.name]: e.target.value })}
+                                        ></TextField>
+                                    </div>
+                                </>
+                                : null}
                             <div className="jobDetails">
                                 <Typography className="jobDetailTitle">COMPANY</Typography>
                                 {edit ? <TextField
@@ -163,13 +190,21 @@ const Job = (props) => {
                                     <Typography>EDIT</Typography>
                                 </div>}
                         </div>
-                        <div className="jobDescription">
-                            <Typography style={{ color: "black", textAlign: "left" }}>{state.job.description}</Typography>
-                        </div>
+                        {edit ?
+                            <div className="jobDetails" style={{ justifyContent: "flex-start" }}>
+                                <Typography className="jobDetailTitle" style={{ marginBottom: "1%" }}>DESCRIPTION</Typography>
+                                <TextField variant="outlined" multiline
+                                    rows={20} style={{ width: "100%", height: "60%", marginBottom: "15px" }} name="description" value={jobDetails.description} onChange={(e) => setJobDetails({ ...jobDetails, [e.target.name]: e.target.value })} />
+                            </div>
+                            : <div className="jobDescription">
+                                <Typography className="jobDetailTitle" style={{ marginBottom: "1%" }}>DESCRIPTION</Typography>
+                                <Typography style={{ color: "black", textAlign: "left" }}>{state.job.description}</Typography>
+                            </div>
+                        }
                     </div>
-                    { followedUpPopUp && state.job.followed_up === false ? <JobEdit setFollowedUpPopUp={setFollowedUpPopUp}
-                    updateStatus={updateStatus}
-                    /> : null }
+                    {followedUpPopUp && state.job.followed_up === false ? <JobEdit setFollowedUpPopUp={setFollowedUpPopUp}
+                        updateStatus={updateStatus}
+                    /> : null}
                 </>
             }
         </div>

@@ -44,8 +44,8 @@ const JobBoard = () => {
         <div className="jobBoardRoot">
             {state.loading ? <Loading background={"#3f51b5"} /> :
                 <>
-                    {/* <Typography variant="h3" style={{ color: "black", margin: ".25% auto" }}>Follow up... get hired</Typography> */}
                     <div className="jobBoardSearchAndCard">
+                        <Typography variant="h4" style={{ color: "black", margin: ".25% auto 2% auto" }}>You have applied to {state.jobs.length} jobs so far!</Typography>
                         <form className="jobBoardSearch" onSubmit={(e) => searchHandler(e)}>
                             <TextField className="jobSearchInput" value={query} onChange={(e) => setQuery(e.target.value)} label="Job Title, Company, or Location"></TextField>
                             <div className="jobBoardFilter">
