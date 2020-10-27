@@ -16,6 +16,7 @@
     "d3-array": "^2.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dom-confetti": "^0.2.0",
     "react-loading-dot": "^1.0.6",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

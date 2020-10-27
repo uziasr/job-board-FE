@@ -67,19 +67,19 @@ const JobForm = ({ jobForm, setJobForm, setLink }) => {
     }
 
     return (
-        <>
+        <div>
             {jobState.jobPostLoading ? <Loading background={"#3f51b5"} /> : <div style={{ display: "flex", flexDirection: "column", width: "100%", margin: "10px 0" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", margin: "15px 0" }}>
-                    <TextField style={{ width: "48%" }} variant="outlined" name="title" label="title" value={jobForm.title} onChange={(e) => inputHandler(e)} />
-                    <TextField style={{ width: "48%" }} variant="outlined" name="company" label="company" value={jobForm.company} onChange={(e) => inputHandler(e)} />
+                    <TextField style={{ width: "48%" }} variant="outlined" name="title" label="title*" value={jobForm.title} onChange={(e) => inputHandler(e)} />
+                    <TextField style={{ width: "48%" }} variant="outlined" name="company" label="company*" value={jobForm.company} onChange={(e) => inputHandler(e)} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
-                    <TextField style={{ width: "48%" }} variant="outlined" name="location" label="location" value={jobForm.location} onChange={(e) => inputHandler(e)} />
-                    <TextField style={{ width: "48%" }} variant="outlined" name="link" label="link" value={jobForm.link} onChange={(e) => inputHandler(e)} />
+                    <TextField style={{ width: "48%" }} variant="outlined" name="location" label="location*" value={jobForm.location} onChange={(e) => inputHandler(e)} />
+                    <TextField style={{ width: "48%" }} variant="outlined" name="link" label="link*" value={jobForm.link} onChange={(e) => inputHandler(e)} />
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "15px" }}>
                     <FormControl style={{ width: "100%" }}>
-                        <InputLabel>Importance</InputLabel>
+                        <InputLabel>Importance*</InputLabel>
                         <Select
                             value={jobForm.importance}
                             label="Importance"
@@ -99,7 +99,7 @@ const JobForm = ({ jobForm, setJobForm, setLink }) => {
                 </div>
                 <div>
                     <TextField variant="outlined" multiline
-                        rows={6} style={{ width: "100%", height: "60%", marginBottom: "15px" }} name="description" label="description" value={jobForm.description} onChange={(e) => inputHandler(e)} />
+                        rows={6} style={{ width: "100%", height: "60%", marginBottom: "15px" }} name="description" label="description*" value={jobForm.description} onChange={(e) => inputHandler(e)} />
                 </div>
                 <div>
                     <Button variant="contained" onClick={() => addJobHandler()} disabled={!validFieldCheck()} color="primary" style={{ width: "100%" }}>Submit</Button>
@@ -107,7 +107,7 @@ const JobForm = ({ jobForm, setJobForm, setLink }) => {
                     <JobPostStatus open={open} handleClose={handleClose} clearForm={clearForm} />
                 </div>
             </div>}
-        </>
+        </div>
     );
 };
 

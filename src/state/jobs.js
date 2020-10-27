@@ -150,6 +150,7 @@ export const jobsReducer = (state = initialState, action) => {
             }
         }
         case GET_JOB_SUCCESS: {
+            console.log(action.payload)
             return {
                 ...state,
                 loading: false,
