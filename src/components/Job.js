@@ -11,6 +11,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Link } from "react-router-dom"
+import JobEdit from "./JobEdit"
 
 const Job = (props) => {
 
@@ -28,18 +29,19 @@ const Job = (props) => {
     const [status, setStatus] = useState(["applied", "interviewing", "reject", "declined", "hired"])
     const [jobDetails, setJobDetails] = useState({})
     const [edit, setEdit] = useState(false)
+    const [followedUpPopUp,setFollowedUpPopUp] = useState(true)
 
 
-    const updateStatus = () => {
+    const updateStatus = (jobDetails) => {
         dispatch(updateJob(url, jobDetails))
         setEdit(false)
     }
 
     const editHandler = () => {
-        setJobDetails(()=>{
-          let jobObj =  {...state.job}
-          delete jobObj.date
-          return jobObj
+        setJobDetails(() => {
+            let jobObj = { ...state.job }
+            delete jobObj.date
+            return jobObj
         })
         setEdit(true)
     }
@@ -59,52 +61,7 @@ const Job = (props) => {
                         <a className="jobLink" href={state.job.link} >
                             <Typography className="jobLinkText" variant="h3">{state.job.title}</Typography>
                         </a>
-                        {/* <div className="jobLoCo">
-                            <Typography variant="h4" style={{ color: "black" }}>{state.job.company}</Typography>
-                            <Typography variant="h4" style={{ color: "black" }}>{state.job.location}</Typography>
-                        </div> */}
                     </div>
-                    {/* <div>
-                        <FormControl component="fieldset">
-                            <RadioGroup className="statusRadio" row aria-label="position" onChange={e => updateStatus(e.target.value)} name="position" defaultValue={state.job.status}>
-                                <FormControlLabel
-                                    value="applied"
-                                    control={<Radio color="primary" />}
-                                    label="Applied"
-                                    labelPlacement="bottom"
-                                    style={{ color: "black" }}
-                                />
-                                <FormControlLabel
-                                    value="interviewing"
-                                    control={<Radio color="primary" />}
-                                    label="Interviewing"
-                                    labelPlacement="bottom"
-                                    style={{ color: "black" }}
-                                />
-                                <FormControlLabel
-                                    value="rejected"
-                                    control={<Radio color="primary" />}
-                                    label="Rejected"
-                                    labelPlacement="bottom"
-                                    style={{ color: "black" }}
-                                />
-                                <FormControlLabel
-                                    value="declined"
-                                    control={<Radio color="primary" />}
-                                    label="Declined"
-                                    labelPlacement="bottom"
-                                    style={{ color: "black" }}
-                                />
-                                <FormControlLabel
-                                    value="hired"
-                                    control={<Radio color="primary" />}
-                                    label="Hired"
-                                    labelPlacement="bottom"
-                                    style={{ color: "black" }}
-                                />
-                            </RadioGroup>
-                        </FormControl>
-                    </div> */}
                     <div className="jobDescriptionDetails">
                         <div className="jobDetailsWrap">
                             <div className="jobDetails">
@@ -199,7 +156,7 @@ const Job = (props) => {
                                 <div className="jobEditButton" onClick={() => setEdit(false)}>
                                     <Typography>CANCEL</Typography>
                                 </div>
-                                <div onClick={() => updateStatus()} className="jobEditButton">
+                                <div onClick={() => updateStatus(jobDetails)} className="jobEditButton">
                                     <Typography>SUBMIT</Typography>
                                 </div>
                             </div> : <div onClick={() => editHandler()} className="jobDetailsButton">
@@ -210,6 +167,9 @@ const Job = (props) => {
                             <Typography style={{ color: "black", textAlign: "left" }}>{state.job.description}</Typography>
                         </div>
                     </div>
+                    { followedUpPopUp && state.job.followed_up === false ? <JobEdit setFollowedUpPopUp={setFollowedUpPopUp}
+                    updateStatus={updateStatus}
+                    /> : null }
                 </>
             }
         </div>

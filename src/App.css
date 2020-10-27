@@ -48,7 +48,7 @@
   align-items: center;
   align-content: center;
   /* margin-top: 1%; */
-  background: url("https://images.unsplash.com/photo-1547979854-5333256878de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc1MjQyfQ&auto=format&fit=crop&w=1950&q=80"); 
+  background: url("https://images.unsplash.com/photo-1547979854-5333256878de?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjc1MjQyfQ&auto=format&fit=crop&w=1950&q=80");
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
@@ -294,6 +294,33 @@
 }
 
 .jobEditButton:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+  transform: scale(.95, .95);
+  transition-duration: .30s;
+}
+
+.jobEditRoot {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  margin: 0 3% 3% 0;
+  background: #3f51b5;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.jobEditYesNo {
+  color: black;
+  border: 1px solid #3f51b5;
+  font-weight: 600 !important;
+  background: white;
+  border-radius: 15px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.jobEditYesNo:hover {
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
   transform: scale(.95, .95);
   transition-duration: .30s;
