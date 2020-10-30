@@ -119,7 +119,7 @@
   align-content: center;
   align-items: flex-end;
   justify-content: space-between;
-  width: 50%;
+  width: 33%;
 }
 
 .jobStatusWrap {
@@ -127,9 +127,13 @@
   justify-content: flex-end;
   align-content: center;
   align-items: center;
-  margin: 4% 2%;
+  margin: 2% 2%;
   width: 100%;
-  padding-right: 25%;
+  padding-right: 10%;
+}
+
+.checkText {
+  font-size: 14px !important;
 }
 
 .filterIcon {
@@ -151,7 +155,7 @@
 .checkBoxWrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   align-content: center;
   width: 100%;
 }
@@ -259,7 +263,7 @@
   width: 98%;
   padding: 2%;
   /* font-weight: bold; */
-  background: #d4d6d8;
+  background: white;
 }
 
 .authRoot {

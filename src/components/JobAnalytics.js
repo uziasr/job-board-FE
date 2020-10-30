@@ -79,7 +79,7 @@ const JobAnalytics = () => {
 
 
     return (
-        Object.keys(stats).length ? <div style={{ width: "60%", marginTop: "2%" }}>
+        Object.keys(stats).length ? <div style={{ width: "70%", marginTop: "2%" }}>
             <div className="averageWrap">
                 <Typography style={{ color: "black" }} variant="h4">Average of {stats.average.avg} applications since {stats.average.date.split(" ")[0]}</Typography>
             </div>
