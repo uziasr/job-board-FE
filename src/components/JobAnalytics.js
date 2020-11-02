@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar, VictoryTooltip } from 'victory';
+import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar, VictoryTooltip, VictoryStack } from 'victory';
 import { useSelector, useDispatch } from "react-redux"
 import { getStats } from "../state/actions"
 
@@ -11,6 +11,8 @@ const JobAnalytics = () => {
     const [appsByDate, setAppsByDate] = useState([])
     const [jobImportanceBar, setJobImportanceBar] = useState([])
     const [jobStatusBar, setJobStatusBar] = useState([])
+    const [jobFollowedImportanceBar, setJobFollowedImportanceBar] = useState([])
+    const [jobFollowedStatusBar, setJobFollowedStatusBar] = useState([])
     const [jobLinkPie, setJobLinkPie] = useState([])
 
     const importanceHash = {
@@ -59,10 +61,24 @@ const JobAnalytics = () => {
                 })
                 return masterArr
             })
+            setJobFollowedImportanceBar(() => {
+                const masterArr = []
+                Object.keys(stats.importance_followed).forEach(i => {
+                    masterArr.push({ x: i, y: stats.importance_followed[i] })
+                })
+                return masterArr
+            })
             setJobStatusBar(() => {
                 const masterArr = []
                 Object.keys(stats.status).forEach(i => {
                     masterArr.push({ x: i, y: stats.status[i] })
+                })
+                return masterArr
+            })
+            setJobFollowedStatusBar(() => {
+                const masterArr = []
+                Object.keys(stats.status_followed).forEach(i => {
+                    masterArr.push({ x: i, y: stats.status_followed[i] })
                 })
                 return masterArr
             })
@@ -77,6 +93,8 @@ const JobAnalytics = () => {
         }
     }, [stats])
 
+    console.log(jobImportanceBar, jobFollowedImportanceBar)
+
 
     return (
         Object.keys(stats).length ? <div style={{ width: "70%", marginTop: "2%" }}>
@@ -86,8 +104,8 @@ const JobAnalytics = () => {
             <div style={{ width: "100%" }}>
                 <Typography variant="h5" style={{ color: "black" }}>Applications Over Time</Typography>
                 <div style={{ display: "flex", width: "30%", justifyContent: "space-between", margin: "1% auto 0 auto" }}>
-                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "#3CB371", padding:"10px 15px", borderRadius: "10px" }}>Actual</Typography>
-                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "dodgerblue", padding:"10px 15px", borderRadius: "10px" }}>Average</Typography>
+                    <Typography variant="h6" style={{ color: "black", fontWeight: "bold", background: "#3CB371", padding: "10px 15px", borderRadius: "10px" }}>Actual</Typography>
+                    <Typography variant="h6" style={{ color: "black", fontWeight: "bold", background: "dodgerblue", padding: "10px 15px", borderRadius: "10px" }}>Average</Typography>
                 </div>
                 <VictoryChart
                     width={1000}
@@ -144,33 +162,60 @@ const JobAnalytics = () => {
                 <div style={{ width: "100%" }}>
                     <VictoryChart domainPadding={{ x: 40, y: 40 }}
                     >
-                        <VictoryBar
-                            style={{ data: { fill: "#3CB371" }, }}
-                            data={jobImportanceBar}
-                            // labelComponent={<VictoryTooltip/>}
-                            dataComponent={
-                                <Bar
-                                    tabIndex={({ index }) => index + 2}
-                                    ariaLabel={({ datum }) => `x: ${datum.x}`}
-
-                                />
-                            }
-
-                        />
+                        <VictoryStack>
+                            <VictoryBar
+                                style={{ data: { fill: "dodgerblue" }, }}
+                                data={jobFollowedImportanceBar}
+                                // labelComponent={<VictoryTooltip/>}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+    
+                                    />
+                                }
+    
+                            />
+                            <VictoryBar
+                                style={{ data: { fill: "#3CB371" }, }}
+                                data={jobImportanceBar}
+                                // labelComponent={<VictoryTooltip/>}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+    
+                                    />
+                                }
+    
+                            />
+                        </VictoryStack>
                     </VictoryChart>
                 </div>
                 <div style={{ width: "100%" }}>
                     <VictoryChart domainPadding={{ x: 40, y: 40 }}>
-                        <VictoryBar
-                            style={{ data: { fill: "#3CB371" } }}
-                            data={jobStatusBar}
-                            dataComponent={
-                                <Bar
-                                    tabIndex={({ index }) => index + 2}
-                                    ariaLabel={({ datum }) => `x: ${datum.x}`}
-                                />
-                            }
-                        />
+                        <VictoryStack>
+                            <VictoryBar
+                                style={{ data: { fill: "dodgerblue" } }}
+                                data={jobFollowedStatusBar}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+                                    />
+                                }
+                            />
+                            <VictoryBar
+                                style={{ data: { fill: "#3CB371" } }}
+                                data={jobStatusBar}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+                                    />
+                                }
+                            />
+                        </VictoryStack>
                     </VictoryChart>
                 </div>
             </div>
