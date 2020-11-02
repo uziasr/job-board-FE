@@ -102,7 +102,7 @@ const JobAnalytics = () => {
     return (
         Object.keys(stats).length ? <div style={{ width: "70%", marginTop: "2%" }}>
             <div className="averageWrap">
-                <Typography style={{ color: "black" }} variant="h5">You have applied to {stats.all_jobs} jobs and followed up {stats.followed_up_count} times.</Typography>
+                <Typography style={{ color: "black" }} variant="h5">You have applied to {stats.all_jobs} jobs and followed up {stats.followed_up_count} times</Typography>
                 <Typography style={{ color: "black" }} variant="h5">Averaging at {stats.average.avg} applications since {stats.average.date.split(" ")[0]}{stats.follow_rate? `, with a follow up rate of ${Math.round(stats.follow_rate * 100)}%` : ""}</Typography>
             </div>
             <div style={{ width: "100%" }}>

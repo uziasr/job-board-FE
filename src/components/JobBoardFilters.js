@@ -65,7 +65,7 @@ const JobBoardFilters = ({ setOpenFilters }) => {
                         </div>
                         <div className="jobStatusWrap">
                             <Typography className="checkText" style={{ color: "black" }}>declined</Typography>
-                            <Checkbox checked={filter.status["declined"] !== undefined} color="primary" name="followed up" onClick={(e) => checkBoxHandler(e, "status")}></Checkbox>
+                            <Checkbox checked={filter.status["declined"] !== undefined} color="primary" name="declined" onClick={(e) => checkBoxHandler(e, "status")}></Checkbox>
                         </div>
                         <div className="jobStatusWrap">
                             <Typography className="checkText" style={{ color: "black" }}>offered</Typography>
