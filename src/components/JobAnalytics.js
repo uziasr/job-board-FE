@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
-import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar, VictoryTooltip } from 'victory';
+import { VictoryBar, VictoryLine, VictoryChart, VictoryTheme, VictoryPie, Bar, VictoryTooltip, VictoryStack } from 'victory';
 import { useSelector, useDispatch } from "react-redux"
 import { getStats } from "../state/actions"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquare } from '@fortawesome/free-solid-svg-icons'
+
 
 const JobAnalytics = () => {
 
@@ -11,6 +14,8 @@ const JobAnalytics = () => {
     const [appsByDate, setAppsByDate] = useState([])
     const [jobImportanceBar, setJobImportanceBar] = useState([])
     const [jobStatusBar, setJobStatusBar] = useState([])
+    const [jobFollowedImportanceBar, setJobFollowedImportanceBar] = useState([])
+    const [jobFollowedStatusBar, setJobFollowedStatusBar] = useState([])
     const [jobLinkPie, setJobLinkPie] = useState([])
 
     const importanceHash = {
@@ -59,10 +64,24 @@ const JobAnalytics = () => {
                 })
                 return masterArr
             })
+            setJobFollowedImportanceBar(() => {
+                const masterArr = []
+                Object.keys(stats.importance_followed).forEach(i => {
+                    masterArr.push({ x: i, y: stats.importance_followed[i] })
+                })
+                return masterArr
+            })
             setJobStatusBar(() => {
                 const masterArr = []
                 Object.keys(stats.status).forEach(i => {
                     masterArr.push({ x: i, y: stats.status[i] })
+                })
+                return masterArr
+            })
+            setJobFollowedStatusBar(() => {
+                const masterArr = []
+                Object.keys(stats.status_followed).forEach(i => {
+                    masterArr.push({ x: i, y: stats.status_followed[i] })
                 })
                 return masterArr
             })
@@ -77,18 +96,21 @@ const JobAnalytics = () => {
         }
     }, [stats])
 
+    console.log(jobImportanceBar, jobFollowedImportanceBar)
+
 
     return (
-        Object.keys(stats).length ? <div style={{ width: "60%", marginTop: "2%" }}>
+        Object.keys(stats).length ? <div style={{ width: "70%", marginTop: "2%" }}>
             <div className="averageWrap">
-                <Typography style={{ color: "black" }} variant="h4">Average of {stats.average.avg} applications since {stats.average.date.split(" ")[0]}</Typography>
+                <Typography style={{ color: "black" }} variant="h5">You have applied to {stats.all_jobs} jobs and followed up {stats.followed_up_count} times</Typography>
+                <Typography style={{ color: "black" }} variant="h5">Averaging at {stats.average.avg} applications since {stats.average.date.split(" ")[0]}{stats.follow_rate? `, with a follow up rate of ${Math.round(stats.follow_rate * 100)}%` : ""}</Typography>
             </div>
             <div style={{ width: "100%" }}>
-                <Typography variant="h5" style={{ color: "black" }}>Applications Over Time</Typography>
+                {/* <Typography variant="h5" style={{ color: "black" }}>Applications Over Time</Typography>
                 <div style={{ display: "flex", width: "30%", justifyContent: "space-between", margin: "1% auto 0 auto" }}>
-                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "#3CB371", padding:"10px 15px", borderRadius: "10px" }}>Actual</Typography>
-                    <Typography variant="h6" style={{ color: "black", fontWeight:"bold", background: "dodgerblue", padding:"10px 15px", borderRadius: "10px" }}>Average</Typography>
-                </div>
+                    <Typography variant="h6" style={{ color: "black", fontWeight: "bold", background: "#3CB371", padding: "10px 15px", borderRadius: "10px" }}>Actual</Typography>
+                    <Typography variant="h6" style={{ color: "black", fontWeight: "bold", background: "dodgerblue", padding: "10px 15px", borderRadius: "10px" }}>Average</Typography>
+                </div> */}
                 <VictoryChart
                     width={1000}
                     domainPadding={{ x: 60, y: 60 }}
@@ -113,7 +135,6 @@ const JobAnalytics = () => {
                         }}
                         interpolation="natural"
                         data={appsByDate}
-
                     />
                     <VictoryLine
                         strokeWidth={200}
@@ -144,51 +165,78 @@ const JobAnalytics = () => {
                 <div style={{ width: "100%" }}>
                     <VictoryChart domainPadding={{ x: 40, y: 40 }}
                     >
-                        <VictoryBar
-                            style={{ data: { fill: "#3CB371" }, }}
-                            data={jobImportanceBar}
-                            // labelComponent={<VictoryTooltip/>}
-                            dataComponent={
-                                <Bar
-                                    tabIndex={({ index }) => index + 2}
-                                    ariaLabel={({ datum }) => `x: ${datum.x}`}
+                        <VictoryStack>
+                            <VictoryBar
+                                style={{ data: { fill: "dodgerblue" }, }}
+                                data={jobFollowedImportanceBar}
+                                // labelComponent={<VictoryTooltip/>}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
 
-                                />
-                            }
+                                    />
+                                }
 
-                        />
+                            />
+                            <VictoryBar
+                                style={{ data: { fill: "#3CB371" }, }}
+                                data={jobImportanceBar}
+                                // labelComponent={<VictoryTooltip/>}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+
+                                    />
+                                }
+
+                            />
+                        </VictoryStack>
                     </VictoryChart>
                 </div>
                 <div style={{ width: "100%" }}>
                     <VictoryChart domainPadding={{ x: 40, y: 40 }}>
-                        <VictoryBar
-                            style={{ data: { fill: "#3CB371" } }}
-                            data={jobStatusBar}
-                            dataComponent={
-                                <Bar
-                                    tabIndex={({ index }) => index + 2}
-                                    ariaLabel={({ datum }) => `x: ${datum.x}`}
-                                />
-                            }
-                        />
+                        <VictoryStack>
+                            <VictoryBar
+                                style={{ data: { fill: "dodgerblue" } }}
+                                data={jobFollowedStatusBar}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+                                    />
+                                }
+                            />
+                            <VictoryBar
+                                style={{ data: { fill: "#3CB371" } }}
+                                data={jobStatusBar}
+                                dataComponent={
+                                    <Bar
+                                        tabIndex={({ index }) => index + 2}
+                                        ariaLabel={({ datum }) => `x: ${datum.x}`}
+                                    />
+                                }
+                            />
+                        </VictoryStack>
                     </VictoryChart>
                 </div>
             </div>
-            <div>
-                <Typography variant="h5" style={{ color: "black", marginTop: "2%" }}>Application Sources</Typography>
+            <div className="rootPieWrap">
+                <Typography variant="h5" style={{ color: "black", marginTop: "2%", textAlign: "left" }}>Application Sources</Typography>
                 <div className="pieWrap">
-                    <div style={{ width: "20%" }}>
-                        {Object.keys(stats.links).map((link, index) => (
-                            <div key={index} className="pieColor" style={{ display: "flex", alignItems: "center", alignContent: "center", justifyContent: "center", background: colorArray[index], }}>
-                                <Typography variant="h6" className="pieLabelText" style={{ color: "black", fontWeight: "600" }}>{`${link} (${stats.links[link]})`}</Typography>
-                                {/* <p className="pieColor" style={{ background: colorArray[index], color: colorArray[index] }}></p> */}
-                            </div>
-                        ))}
-                    </div>
-                    <div style={{ width: "60%" }}>
+                    <div style={{ width: "50%" }}>
                         <VictoryPie data={jobLinkPie}
                             colorScale={colorArray}
                         />
+                    </div>
+                    <div style={{ width: "30%" }}>
+                        {Object.keys(stats.links).map((link, index) => (
+                            <div key={index} className="pieColor" style={{ display: "flex", alignItems: "center", alignContent: "center", justifyContent: "space-between", }}>
+                                <FontAwesomeIcon icon={faSquare} style={{ color: colorArray[index], fontSize: "28px" }} />
+                                <Typography className="pieLabelText" style={{ color: "black", fontWeight: "500", fontSize: "20px" }}>{`${link}`}</Typography>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

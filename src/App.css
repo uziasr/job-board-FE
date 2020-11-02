@@ -119,7 +119,7 @@
   align-content: center;
   align-items: flex-end;
   justify-content: space-between;
-  width: 50%;
+  width: 33%;
 }
 
 .jobStatusWrap {
@@ -127,9 +127,13 @@
   justify-content: flex-end;
   align-content: center;
   align-items: center;
-  margin: 4% 2%;
+  margin: 2% 2%;
   width: 100%;
-  padding-right: 25%;
+  padding-right: 10%;
+}
+
+.checkText {
+  font-size: 14px !important;
 }
 
 .filterIcon {
@@ -151,7 +155,7 @@
 .checkBoxWrap {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   align-content: center;
   width: 100%;
 }
@@ -238,6 +242,12 @@
   width: 100%;
 }
 
+.rootPieWrap{
+  padding: 2%;
+  border-radius: 15px;
+  margin-bottom: 5%;
+}
+
 .pieWrap {
   margin: 0 auto;
   width: 80%;
@@ -248,9 +258,9 @@
 }
 
 .pieColor {
-  margin: 15% auto;
+  margin: 2% auto;
   width: 100%;
-  padding: 2%;
+  padding-right: 2%;
   border-radius: 10px;
 }
 
@@ -258,8 +268,9 @@
   border-radius: 10px;
   width: 98%;
   padding: 2%;
+  text-align: left;
   /* font-weight: bold; */
-  background: #d4d6d8;
+  
 }
 
 .authRoot {

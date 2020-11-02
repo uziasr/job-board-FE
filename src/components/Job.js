@@ -42,7 +42,7 @@ const Job = (props) => {
     })
 
 
-    const [status, setStatus] = useState(["applied", "interviewing", "reject", "declined", "hired"])
+    const [status, setStatus] = useState(["applied", "interviewing", "rejected", "declined", "hired"])
     const [jobDetails, setJobDetails] = useState({})
     const [edit, setEdit] = useState(false)
     const [followedUpPopUp, setFollowedUpPopUp] = useState(true)

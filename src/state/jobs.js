@@ -53,10 +53,11 @@ const initialState = {
     loading: false,
     jobPostLoading: false,
     jobId: null,
-    initialJobsLoad:false,
-    jobFilters:{
+    initialJobsLoad: false,
+    jobFilters: {
         importance: {},
-        status: {}
+        status: {},
+        followed_up: {}
     }
 }
 
