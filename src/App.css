@@ -242,6 +242,12 @@
   width: 100%;
 }
 
+.rootPieWrap{
+  padding: 2%;
+  border-radius: 15px;
+  margin-bottom: 5%;
+}
+
 .pieWrap {
   margin: 0 auto;
   width: 80%;
@@ -252,9 +258,9 @@
 }
 
 .pieColor {
-  margin: 15% auto;
+  margin: 2% auto;
   width: 100%;
-  padding: 2%;
+  padding-right: 2%;
   border-radius: 10px;
 }
 
@@ -262,8 +268,9 @@
   border-radius: 10px;
   width: 98%;
   padding: 2%;
+  text-align: left;
   /* font-weight: bold; */
-  background: white;
+  
 }
 
 .authRoot {
