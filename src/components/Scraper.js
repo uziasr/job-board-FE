@@ -84,8 +84,8 @@ const Scraper = () => {
                     {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
                         {jobSources.map((job, index) => (
                             <Typography variant="h5" key={index} style={{ color: job === jobSourceFocus ? "green" : "black", marginBottom: "10px" }} >{job}</Typography>
-                        ))} */}
-                    </div>
+                        ))} 
+                    </div>*/}
                     <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
                         <TextField
                             variant="outlined"
