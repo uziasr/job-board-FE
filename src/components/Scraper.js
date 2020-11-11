@@ -32,7 +32,7 @@ const Scraper = () => {
 
     const scrapeLink = () => {
         setLoading(() => true)
-        axios.post(`https://job-board-pro.herokuapp.com/${jobSourceFocus}`, { link: link })
+        axios.post(`https://job-board-pro.herokuapp.com/scrape/${jobSourceFocus}`, { link: link })
             .then(res => {
                 setJobForm(() => ({
                     title: "",
