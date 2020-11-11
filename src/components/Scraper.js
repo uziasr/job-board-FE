@@ -32,7 +32,7 @@ const Scraper = () => {
 
     const scrapeLink = () => {
         setLoading(() => true)
-        axios.post(`http://127.0.0.1:5000/scrape/${jobSourceFocus}`, { link: link })
+        axios.post(`https://job-board-pro.herokuapp.com/${jobSourceFocus}`, { link: link })
             .then(res => {
                 setJobForm(() => ({
                     title: "",
@@ -81,10 +81,10 @@ const Scraper = () => {
                 <div style={{margin:"2% 0"}}>
                     {/* <Typography variant="h2" style={{ color: "black", marginBottom: "32px" }}>Save Job</Typography> */}
                     {loading ? <Loading background={"white"} /> : null}
-                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
                         {jobSources.map((job, index) => (
                             <Typography variant="h5" key={index} style={{ color: job === jobSourceFocus ? "green" : "black", marginBottom: "10px" }} >{job}</Typography>
-                        ))}
+                        ))} */}
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignContent: "center", alignItems: "center" }}>
                         <TextField
@@ -93,7 +93,7 @@ const Scraper = () => {
                             style={{ width: "450px", borderRadius: "10px", color: "white" }}
                             value={link}
                             onChange={(e) => setLink(e.target.value)}
-                            placeholder="Scrape Link"
+                            placeholder="scrape indeed, ziprecruiter, dice, or monster link" 
                         />
                         <Button variant="contained" color="primary" style={{ marginLeft: "15px", cursor: "pointer" }} disabled={!validLink()} onClick={() => scrapeLink()}>Get Details!</Button>
                     </div>
